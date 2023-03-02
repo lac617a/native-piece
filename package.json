@@ -1,0 +1,100 @@
+{
+  "name": "native-piece",
+  "version": "0.1.41",
+  "description": "React primitive UI components built with Styled System. Use the best bits of ES6 and CSS to style your apps without stress",
+  "types": "dist/index.d.ts",
+  "main": "dist/native-piece.cjs.js",
+  "module": "dist/native-piece.esm.js",
+  "license": "MIT",
+  "author": "Dominyel Rivera - Yoydev",
+  "browser": {
+    "./dist/native-piece.esm.js": "./dist/native-piece.browser.esm.js",
+    "./dist/native-piece.cjs.js": "./dist/native-piece.browser.cjs.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "css",
+    "css-in-js",
+    "native-piece",
+    "styling"
+  ],
+  "scripts": {
+    "build:rollup": "rollup --config ./config/rollup.prod.config.js --bundleConfigAsCjs",
+    "dev:rollup": "rollup --config ./config/rollup.dev.config.js --bundleConfigAsCjs -w",
+    "build": "rimraf dist && tsc --declaration --emitDeclarationOnly && yarn build:rollup",
+    "dev": "rimraf dist && yarn dev:rollup",
+    "prepublish": "yarn build",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-html": "^1.0.2",
+    "@rollup/plugin-image": "^3.0.2",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/node": "^18.13.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.1",
+    "@types/styled-system": "^5.1.16",
+    "@types/styled-system__should-forward-prop": "^5.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "2.8.4",
+    "rimraf": "^4.1.2",
+    "rollup": "^3.15.0",
+    "rollup-plugin-dev": "^2.0.4",
+    "rollup-plugin-dts": "^5.2.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "https://github.com/isaacl/rollup-plugin-postcss",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@emotion/unitless": "^0.8.0",
+    "@styled-system/should-forward-prop": "^5.1.5",
+    "classnames": "^2.3.2",
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0",
+    "styled-system": "^5.1.5",
+    "tslib": "^2.5.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "tslib": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lac617a/native-piece"
+  },
+  "bugs": {
+    "url": "https://github.com/lac617a/native-piece/issues"
+  },
+  "engines": {
+    "node": ">= 14"
+  }
+}
