@@ -1,9 +1,16 @@
 import React from "react";
 import { Box, Stack, Paragraph, Heading } from "../../src/index";
+import { useWindowSize } from "../../src/hooks";
 
 export const App = () => {
+  const { width } = useWindowSize();
+
   return (
     <Box>
+      <Heading>HOOKS</Heading>
+      {width}
+
+      <Heading>CSS-COMPONENTS</Heading>
       <Heading>Soy un h2</Heading>
       <Paragraph color="red">
         Hola
