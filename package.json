@@ -1,33 +1,34 @@
 {
   "name": "native-piece",
-  "version": "0.1.43",
+  "version": "0.1.49",
   "description": "React primitive UI components. Use the best bits of ES6 and CSS to style your apps without stress",
   "types": "dist/index.d.ts",
-  "main": "dist/native-piece.cjs.js",
-  "module": "dist/native-piece.esm.js",
+  "main": "dist/cjs/native-piece.cjs.js",
+  "module": "dist/esm/native-piece.esm.js",
   "license": "MIT",
   "author": "Dominyel Rivera - Yoydev",
   "browser": {
-    "./dist/native-piece.esm.js": "./dist/native-piece.browser.esm.js",
-    "./dist/native-piece.cjs.js": "./dist/native-piece.browser.cjs.js"
+    "./dist/esm/native-piece.esm.js": "./dist/esm/native-piece.browser.esm.js",
+    "./dist/cjs/native-piece.cjs.js": "./dist/cjs/native-piece.browser.cjs.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "hooks"
   ],
   "keywords": [
-    "react",
     "css",
+    "react",
+    "styling",
     "css-in-js",
-    "native-piece",
-    "styling"
+    "native-piece"
   ],
   "scripts": {
-    "build:rollup": "rollup --config ./config/rollup.prod.config.js --bundleConfigAsCjs",
-    "dev:rollup": "rollup --config ./config/rollup.dev.config.js --bundleConfigAsCjs -w",
-    "build": "rimraf dist && tsc --declaration --emitDeclarationOnly && yarn build:rollup",
-    "dev": "rimraf dist && yarn dev:rollup",
+    "tsc": "tsc --declaration --emitDeclarationOnly",
     "prepublish": "yarn build",
-    "tsc": "tsc"
+    "dev": "rimraf dist && yarn dev:rollup",
+    "build": "rimraf dist && yarn tsc && yarn build:rollup",
+    "build:rollup": "rollup --config ./config/rollup.prod.config.js --bundleConfigAsCjs",
+    "dev:rollup": "rollup --config ./config/rollup.dev.config.js --bundleConfigAsCjs -w"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

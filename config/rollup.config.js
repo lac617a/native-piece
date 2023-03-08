@@ -5,7 +5,7 @@ import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
-// import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 import pkg from "../package.json" assert { type: "json" };
 import babel from "@rollup/plugin-babel";
@@ -16,7 +16,7 @@ export const inputDev = path.join(EXAMPLE_DIR, "index.tsx");
 export const globals = {
   react: "React",
   "react-dom": "ReactDOM",
-  "@emotion/styled": "styled", // PROD
+  "@emotion/styled": "styled",
   "styled-system": "styles",
 };
 
@@ -24,7 +24,7 @@ export const globals = {
 export const EXTENSIONS = [".ts", ".tsx"];
 
 // Excluded dependencies - dev dependencies
-export const EXTERNAL = Object.keys(pkg.devDependencies);
+// export const EXTERNAL = Object.keys(pkg.devDependencies);
 
 export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
@@ -61,13 +61,13 @@ export const commonPlugins = [
   nodeResolve({
     browser: true,
   }),
-  // peerDepsExternal(), // PROD
+  peerDepsExternal(),
   commonjs(),
   babel({
-    babelHelpers: "runtime", // runtime-PROD // bundled-DEV
+    babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
     extensions: EXTENSIONS,
-    // include: EXTENSIONS.map((ext) => `src/**/*${ext}`), // PROD
+    include: EXTENSIONS.map((ext) => `src/**/*${ext}`),
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",
@@ -132,7 +132,6 @@ const configBase = {
 export const standaloneBaseConfig = {
   ...configBase,
   output,
-  // external: Object.keys(globals),
   plugins: configBase.plugins.concat(
     replace({
       __SERVER__: JSON.stringify(false),
@@ -147,8 +146,8 @@ export const standaloneBaseConfig = {
 export const serverConfig = {
   ...configBase,
   output: [
-    getESM({ file: "dist/native-piece.esm.js" }),
-    getCJS({ file: "dist/native-piece.cjs.js" }),
+    getESM({ file: "dist/esm/native-piece.esm.js" }),
+    getCJS({ file: "dist/cjs/native-piece.cjs.js" }),
   ],
   plugins: configBase.plugins.concat(
     replace({
@@ -162,8 +161,23 @@ export const serverConfig = {
 export const browserConfig = {
   ...configBase,
   output: [
-    getESM({ file: "dist/native-piece.browser.esm.js" }),
-    getCJS({ file: "dist/native-piece.browser.cjs.js" }),
+    getESM({ file: "dist/esm/native-piece.browser.esm.js" }),
+    getCJS({ file: "dist/cjs/native-piece.browser.cjs.js" }),
+  ],
+  plugins: configBase.plugins.concat(
+    replace({
+      preventAssignment: true,
+      __SERVER__: JSON.stringify(false),
+    })
+  ),
+};
+
+export const hooksConfig = {
+  ...configBase,
+  input: SRC_DIR + "/hooks/index.ts",
+  output: [
+    getESM({ file: "hooks/dist/native-piece.hooks.esm.js" }),
+    getCJS({ file: "hooks/dist/native-piece.hooks.cjs.js" }),
   ],
   plugins: configBase.plugins.concat(
     replace({

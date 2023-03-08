@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src/hooks"],
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "react",
@@ -9,10 +9,10 @@
     "moduleResolution": "node",
     // "emitDeclarationOnly": true,
     // "declaration": true,
-    "baseUrl": "src",
+    "baseUrl": "src/hooks",
     "resolveJsonModule": true,
     "allowJs": true,
-    "outDir": "dist",
+    "outDir": "hooks/dist",
     // "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -25,5 +25,13 @@
     "alwaysStrict": true,
     "noImplicitOverride": true,
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    // "hooks",
+    // "**/*/hooks",
+    "**/*/components",
+    "**/*/utils",
+    "**/*/core"
+  ]
 }

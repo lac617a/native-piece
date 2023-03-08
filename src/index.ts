@@ -9,4 +9,4 @@ export {
 } from "./components/Primitive/Paragraph";
 
 export { ICSSProperty } from "./interfaces";
-export * from "./hooks";
+// export * from "./hooks";

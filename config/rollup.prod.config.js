@@ -1,6 +1,6 @@
 import {
   globals,
-  EXTERNAL,
+  hooksConfig,
   serverConfig,
   browserConfig,
   minifierPlugin,
@@ -12,7 +12,7 @@ const prodPlugins = [...standaloneBaseConfig.plugins];
 
 const standaloneProdConfig = {
   ...standaloneBaseConfig,
-  external: [...Object.keys(globals), ...EXTERNAL],
+  external: Object.keys(globals),
   output: {
     ...standaloneBaseConfig.output,
     file: "dist/native-piece.min.js",
@@ -31,4 +31,5 @@ export default [
   standaloneProdConfig,
   serverConfig,
   browserConfig,
+  hooksConfig,
 ];
