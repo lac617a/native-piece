@@ -1,17 +1,13 @@
 .nav-item {
-
+	padding: 10px;
 }
-
-.nav-item:hover {
-  
-}
-
 .nav-item-link {
 	position: relative;
 	text-decoration: none;
-	color: var(--text);
+	color: var(--primary);
 	font-weight: 700;
 	vertical-align: top;
+	padding-bottom: 10px;
 }
 
 .nav-item-link::before {
@@ -21,7 +17,7 @@
 		height: 4px;
     
 		border-radius: 4px;
-		background-color: var(--text);
+		background-color: var(--primary);
 		bottom: 0;
 		left: 0;
 

@@ -2,10 +2,11 @@ import terser from "@rollup/plugin-terser";
 import {
   globals,
   serverConfig,
+  browserConfig,
   standaloneBaseConfig,
 } from "./rollup.config";
 import replace from "@rollup/plugin-replace";
-// import dts from "rollup-plugin-dts";
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const dts = require("rollup-plugin-dts");
 
@@ -53,6 +54,6 @@ export default [
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts.default()],
   },
-  // browserConfig,
+  browserConfig,
   // hooksConfig,
 ];

@@ -1256,10 +1256,10 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
   integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
 
-native-piece@^0.1.61:
-  version "0.1.61"
-  resolved "https://registry.yarnpkg.com/native-piece/-/native-piece-0.1.61.tgz#1f8f15b873c7a7312c0a2958943fa974816a0c6f"
-  integrity sha512-UXIHpOGNL/mwpC00gZskKHzaN6ygPAudxOQQ6xQl+3qnEsf/8CxJiuqSWr7qfUtxuWY4QFrDMglVJrrYY5JHRA==
+native-piece@^0.1.62:
+  version "0.1.62"
+  resolved "https://registry.yarnpkg.com/native-piece/-/native-piece-0.1.62.tgz#27e104584473b81f9a119db0ef3c331a68d98f1d"
+  integrity sha512-Dzpw2JXRtMokA/I9OCcKdT00pj53mABJfZB69SbzAaUAPs005HlOGBthXVN17LYaxEeNXOC9PQsmV2RmWTCn/g==
   dependencies:
     "@emotion/react" "11.10.6"
     "@emotion/styled" "11.10.6"
