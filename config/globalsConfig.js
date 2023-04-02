@@ -14,13 +14,13 @@ const cjs = {
   exports: "named",
   interop: "auto",
   format: "cjs",
-  sourcemap: true,
+  // sourcemap: true,
 };
 
 const esm = {
   format: "esm",
   interop: "auto",
-  sourcemap: true,
+  // sourcemap: true,
 };
 
 export const getCJS = (override) => ({ ...cjs, ...override });

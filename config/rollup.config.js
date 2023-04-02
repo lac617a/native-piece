@@ -14,7 +14,7 @@ import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
-// import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 import pkg from "../package.json" assert { type: "json" };
 
@@ -34,7 +34,6 @@ export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
   format: "umd",
   globals,
-  sourcemap: true,
 };
 
 export const commonPlugins = [
@@ -49,13 +48,13 @@ export const commonPlugins = [
   nodeResolve({
     browser: true,
   }),
-  // peerDepsExternal(),
+  peerDepsExternal(),
   commonjs(),
   babel({
     babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
     extensions: EXTENSIONS,
-    // include: EXTENSIONS.map((ext) => `arc/**/*${ext}`),
+    include: EXTENSIONS.map((ext) => `arc/**/*${ext}`),
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",

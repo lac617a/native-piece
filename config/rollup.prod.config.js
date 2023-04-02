@@ -5,6 +5,9 @@ import {
   standaloneBaseConfig,
 } from "./rollup.config";
 import replace from "@rollup/plugin-replace";
+// import dts from "rollup-plugin-dts";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const dts = require("rollup-plugin-dts");
 
 const minifierPlugin = terser({
   compress: {
@@ -45,6 +48,11 @@ const standaloneProdConfig = {
 export default [
   standaloneProdConfig,
   serverConfig,
+  {
+    input: "dist/esm/types/index.d.ts",
+    output: [{ file: "dist/index.d.ts", format: "esm" }],
+    plugins: [dts.default()],
+  },
   // browserConfig,
   // hooksConfig,
 ];
