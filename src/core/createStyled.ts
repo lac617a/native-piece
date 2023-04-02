@@ -4,11 +4,11 @@ import shouldForwardProp from "@styled-system/should-forward-prop";
 import * as styledSystem from "styled-system";
 import styled, { CSSObject } from "@emotion/styled";
 
-import { ICSSProperty } from "../interfaces";
+import { ICSSProperty, KeyofJSXType } from "../interfaces";
 import { systemStyledTypes } from "../utils/flatten";
 
 function Styled<T>(
-  tag: keyof JSX.IntrinsicElements,
+  tag: KeyofJSXType,
   props: T,
   css?: ICSSProperty
 ) {
