@@ -7,7 +7,7 @@ export interface IBox extends PropType { }
 
 const Box: FC<IBox> = (props) => {
   const Component = CreateStyled(props.as || "div", props, {});
-  return <Component {...reactPropsTypes(props)} />;
+  return <Component  {...reactPropsTypes(props)} />;
 };
 
 export default Box;

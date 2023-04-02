@@ -1,6 +1,6 @@
 import { ICSSProperty } from "./interfaces";
 
-export interface PropType extends Omit<ICSSProperty, "translate"> {
+export interface PropType extends ICSSProperty {
   children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 

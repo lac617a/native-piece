@@ -1,6 +1,7 @@
 import React, { useState } from "preact/hooks";
 import { Box, Heading, Stack } from "native-piece";
 import IconShipWheel from "../assets/icons/icon-ship-wheel.png";
+import IconFlagPirate from "../assets/icons/icon-flag-pirate.png";
 function Header() {
   const [count, setCount] = useState(0);
 
@@ -8,10 +9,13 @@ function Header() {
     <Box backgroundColor="#FFFF" height={80}>
       <Stack
         as="ul"
+        gap="1rem"
         width="100%"
+        fontSize={30}
         color="#161616"
         justifyContent="center">
-        <Box as="li" fontSize="30px">
+
+        <Box as="li" borderBottom="1px solid red">
           Guia
         </Box>
         <Box as="li">

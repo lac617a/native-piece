@@ -6,7 +6,7 @@ const root = document.getElementById("root");
 
 ReactDOM.render(
   <Box>
-    <Heading>HOOKS</Heading>
+    <Heading className="Hola">HOOKS</Heading>
 
     <Heading>CSS-COMPONENTS</Heading>
     <Heading>Soy un h2</Heading>

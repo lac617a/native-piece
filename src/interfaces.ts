@@ -29,11 +29,6 @@ export interface ICSSMEDIAProperty {
   mediaMinXl?: ICSSProperty;
   mediaMinXxl?: ICSSProperty;
 }
-// export interface ICSSProperty
-//   extends ICSSMEDIAProperty, Excludes<CSSProperties, SpaceProps>, ColorProps {
-//   as?: keyof JSX.IntrinsicElements;
-//   pseudos?: CSSPseudos;
-// }
 
 export interface ICSSProperty
   extends Omit<
@@ -57,6 +52,7 @@ export interface ICSSProperty
     ColorProps {
   as?: KeyofJSXType;
   pseudos?: CSSPseudos;
+  className?: string;
 }
 
 export type KeyofJSXType = keyof Pick<JSX.IntrinsicElements, "a" | "article" | "aside" | "b" | "blockquote" | "body" | "code" | "dialog" | "div" | "footer" | "figcaption" | "figure" | "form" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "header" | "hgroup" | "hr" | "img" | "input" | "label" | "li" | "main" | "nav" | "ol" | "p" | "section" | "span" | "strong" | "table" | "td" | "thead" | "th" | "tfoot" | "tbody" | "tr" | "ul">;
