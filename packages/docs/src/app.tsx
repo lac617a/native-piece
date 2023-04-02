@@ -7,16 +7,16 @@ export function App() {
   return (
     <Box>
       <Header />
-      <Stack.V marginTop={30}>
+      <Stack.V gap="1rem" marginTop={200} alignItems="center" justifyContent="center">
         <h1>Vite + Preact</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
+        <Stack.V gap="1rem">
+          <button onClick={() => setCount((count) => ++count)}>
             count is {count}
           </button>
           <p>
             Edit <code>src/app.tsx</code> and save to test HMR
           </p>
-        </div>
+        </Stack.V>
         <p className="read-the-docs">
           Click on the Vite and Preact logos to learn more
         </p>

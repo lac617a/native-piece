@@ -87,7 +87,6 @@ const objToCssArray = (obj: Dict<any>, prevKey?: string): string[] => {
       }
     }
   }
-  // console.log(rules);
 
   const newRules = new Set([...recordMediaQuery(rules), ...rules]);
   return prevKey ? [`${prevKey} {`, ...rules, "}"] : [...newRules];
@@ -136,7 +135,7 @@ const recordMediaQuery = (rules: string[]): string[] => {
   ];
 };
 
-const getProps = (test: any) => (props: any) => {
+const getProps = (test: (string: string) => boolean) => (props: any) => {
   const next: any = {};
   for (const key in props) {
     if (test(key || "")) next[key] = props[key];

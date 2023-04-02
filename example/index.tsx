@@ -14,10 +14,17 @@ ReactDOM.render(
       Hola
     </Paragraph>
     <div>
-      <Stack maxWidth="10%" gap="1rem" margin={30} padding={20} backgroundColor="crimson"
+      <Stack
+        gap="1rem"
+        maxWidth="10%"
+        marginX={30}
+        padding={20}
+        fontSize={20}
+        transition="300ms"
+        fontFamily="Serif"
+        backgroundColor="crimson"
         mediaLg={{ backgroundColor: "tomato" }}
         mediaMd={{ backgroundColor: "yellow" }}
-        transition="300ms"
         pseudos={{
           ":hover": {
             color: "red"

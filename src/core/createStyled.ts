@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import shouldForwardProp from "@styled-system/should-forward-prop";
 
 import * as styledSystem from "styled-system";
 import styled, { CSSObject } from "@emotion/styled";
@@ -13,18 +14,19 @@ function Styled<T>(
 ) {
   const CSSConvert = systemStyledTypes(props as CSSProperties);
 
-  return styled(tag)`
+  return styled(tag, {shouldForwardProp})`
     ${CSSConvert}
     ${css as CSSObject}
     ${styledSystem.grid}
+    ${styledSystem.size}
     ${styledSystem.space}
-    ${styledSystem.colorStyle}
+    ${styledSystem.color}
     ${styledSystem.shadow}
     ${styledSystem.layout}
+    ${styledSystem.borders}
     ${styledSystem.flexbox}
-    ${styledSystem.fontSize}
-    ${styledSystem.fontFamily}
-    ${styledSystem.fontWeight}
+    ${styledSystem.typography}
+    ${styledSystem.borderRadius}
     ${(props as any ).pseudos}
   `;
 }
