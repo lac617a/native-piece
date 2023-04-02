@@ -1,5 +1,5 @@
 {
-  "include": ["src/hooks"],
+  "include": ["src"],
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "react",
@@ -9,10 +9,11 @@
     "moduleResolution": "node",
     // "emitDeclarationOnly": true,
     // "declaration": true,
-    "baseUrl": "src/hooks",
+    "baseUrl": "src",
     "resolveJsonModule": true,
+    "downlevelIteration": true,
     "allowJs": true,
-    "outDir": "hooks/dist",
+    "outDir": "dist",
     // "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -24,14 +25,17 @@
     "useUnknownInCatchVariables": true,
     "alwaysStrict": true,
     "noImplicitOverride": true,
+    // BUILD
+    // "skipLibCheck": true,
+    // "declarationDir": "config/types",
   },
   "exclude": [
     "node_modules",
     "dist",
-    // "hooks",
-    // "**/*/hooks",
-    "**/*/components",
+    "hooks",
+    "**/*/core",
+    "**/*/hooks",
     "**/*/utils",
-    "**/*/core"
+    "**/*/components",
   ]
 }

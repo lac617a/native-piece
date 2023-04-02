@@ -168,6 +168,7 @@ export const ALLPROPERTY = [
   "padding-right",
   "padding-top",
   "padding",
+  // "pseudos",
   "padding-inline",
   "padding-block",
   "place-content",

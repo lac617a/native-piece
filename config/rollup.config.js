@@ -1,14 +1,22 @@
 import path from "path";
-import { SRC_DIR, tsconfig, DIST_DIR, EXAMPLE_DIR } from "./globalsConfig.js";
-import terser from "@rollup/plugin-terser";
+import {
+  getESM,
+  getCJS,
+  SRC_DIR,
+  PKG_DIR,
+  tsconfig,
+  DIST_DIR,
+  EXTENSIONS,
+  EXAMPLE_DIR,
+} from "./globalsConfig.js";
+import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
+// import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 import pkg from "../package.json" assert { type: "json" };
-import babel from "@rollup/plugin-babel";
 
 export const input = path.join(SRC_DIR, "index.ts");
 export const inputDev = path.join(EXAMPLE_DIR, "index.tsx");
@@ -17,14 +25,10 @@ export const globals = {
   react: "React",
   "react-dom": "ReactDOM",
   "@emotion/styled": "styled",
-  "styled-system": "styles",
+  // "styled-system": "styledSystem",
 };
 
 // Array of extensions to be handled by babel
-export const EXTENSIONS = [".ts", ".tsx"];
-
-// Excluded dependencies - dev dependencies
-// export const EXTERNAL = Object.keys(pkg.devDependencies);
 
 export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
@@ -32,22 +36,6 @@ export const output = {
   globals,
   sourcemap: true,
 };
-
-const cjs = {
-  exports: "named",
-  interop: "auto",
-  format: "cjs",
-  sourcemap: true,
-};
-
-const esm = {
-  format: "esm",
-  interop: "auto",
-  sourcemap: true,
-};
-
-const getCJS = (override) => ({ ...cjs, ...override });
-const getESM = (override) => ({ ...esm, ...override });
 
 export const commonPlugins = [
   typescript({
@@ -61,23 +49,19 @@ export const commonPlugins = [
   nodeResolve({
     browser: true,
   }),
-  peerDepsExternal(),
+  // peerDepsExternal(),
   commonjs(),
   babel({
     babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
     extensions: EXTENSIONS,
-    include: EXTENSIONS.map((ext) => `src/**/*${ext}`),
+    // include: EXTENSIONS.map((ext) => `arc/**/*${ext}`),
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",
       "@babel/preset-typescript",
     ],
-    plugins: [
-      "@babel/plugin-transform-runtime",
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread",
-    ], // PROD
+    plugins: ["@babel/plugin-transform-runtime"],
   }),
   replace({
     preventAssignment: true,
@@ -107,26 +91,9 @@ export const commonPlugins = [
   }),
 ];
 
-export const minifierPlugin = terser({
-  compress: {
-    passes: 10,
-    keep_infinity: true,
-    pure_getters: true,
-  },
-  ecma: 5,
-  format: {
-    wrap_func_args: false,
-    comments: /^\s*([@#]__[A-Z]+__\s*$|@cc_on)/,
-    preserve_annotations: true,
-  },
-});
-
 const configBase = {
   input,
   plugins: commonPlugins,
-  // \0 is rollup convention for generated in memory modules
-  // external: (id) =>
-  //   !id.startsWith("\0") && !id.startsWith(".") && !id.startsWith("/"),
 };
 
 export const standaloneBaseConfig = {
@@ -174,7 +141,7 @@ export const browserConfig = {
 
 export const hooksConfig = {
   ...configBase,
-  input: SRC_DIR + "/hooks/index.ts",
+  input: PKG_DIR + "/hooks/index.ts",
   output: [
     getESM({ file: "hooks/dist/native-piece.hooks.esm.js" }),
     getCJS({ file: "hooks/dist/native-piece.hooks.cjs.js" }),

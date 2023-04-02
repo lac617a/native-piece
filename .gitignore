@@ -11,6 +11,7 @@ bundle-stats.html
 __diff_output__
 lib
 dist
+*.txt
 sandbox/node_modules
 
 example2

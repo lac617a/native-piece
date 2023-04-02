@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-import { useIsomorphicLayoutEffect } from "./index";
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 /**
  * Use setInterval in functional React component with the same API.

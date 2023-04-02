@@ -1,11 +1,12 @@
 /* eslint-disable no-prototype-builtins */
 import { CSSProperties } from "react";
-import { size } from "../interfaces";
+
 import { Dict } from "../types";
-import addUnitIfNeeded from "./addUnitlfNeeded";
+import { size } from "../interfaces";
 import { ALLPROPERTY } from "./domStyled";
-import hyphenate from "./hyphenateStyleName";
 import isPlainObject from "./isPlainObject";
+import hyphenate from "./hyphenateStyleName";
+import addUnitIfNeeded from "./addUnitlfNeeded";
 
 const propertyInclude = (property: string): boolean => {
   const PROPERTY = ALLPROPERTY.some(
@@ -67,7 +68,6 @@ const isFalsish = (chunk: any): chunk is undefined | null | false | "" =>
 
 const objToCssArray = (obj: Dict<any>, prevKey?: string): string[] => {
   const rules: string[] = [];
-
   for (const key in obj) {
     if (!obj.hasOwnProperty(key) || isFalsish(obj[key])) continue;
     else {
@@ -87,6 +87,7 @@ const objToCssArray = (obj: Dict<any>, prevKey?: string): string[] => {
       }
     }
   }
+  // console.log(rules);
 
   const newRules = new Set([...recordMediaQuery(rules), ...rules]);
   return prevKey ? [`${prevKey} {`, ...rules, "}"] : [...newRules];
@@ -140,13 +141,13 @@ const getProps = (test: any) => (props: any) => {
   for (const key in props) {
     if (test(key || "")) next[key] = props[key];
   }
-  // console.log(next);
   return next;
 };
 
-const getSystemProps = getProps((regexp: string) => PRE.test(regexp));
+const getSystemStyledProps = getProps((regexp: string) => PRE.test(regexp));
+export const reactPropsTypes = getProps((regexp: string) => !PRE.test(regexp));
 
-export const getPropTypes = (props: CSSProperties): string =>
-  objToCssArray({ ...getSystemProps(props) })
+export const systemStyledTypes = (props: CSSProperties): string =>
+  objToCssArray({ ...getSystemStyledProps(props) })
     .toString()
-    .replaceAll(",", "\n");
+    .replace(new RegExp(",", "g"), "\n");

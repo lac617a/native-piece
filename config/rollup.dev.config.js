@@ -2,7 +2,6 @@ import { inputDev, standaloneBaseConfig } from "./rollup.config.js";
 import dev from "rollup-plugin-dev";
 import html from "@rollup/plugin-html";
 import image from "@rollup/plugin-image";
-import postcss from "rollup-plugin-postcss";
 import replace from "@rollup/plugin-replace";
 import { htmlTemplate } from "./htmlTemplate.js";
 import livereload from "rollup-plugin-livereload";
@@ -19,14 +18,15 @@ devPlugins.unshift(
 devPlugins.push(
   dev({
     dirs: ["dist"],
-    port: 8086,
     spa: true,
+    force: true
   })
 );
 
 devPlugins.push(
   livereload({
     watch: "dist",
+    delay: 300
   })
 );
 
@@ -37,12 +37,6 @@ devPlugins.push(
 );
 
 devPlugins.push(image());
-
-devPlugins.push(
-  postcss({
-    extensions: [".css"],
-  })
-);
 
 const standaloneDevConfig = {
   ...standaloneBaseConfig,

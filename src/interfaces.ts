@@ -1,4 +1,7 @@
+import * as CSS from "csstype";
 import { CSSProperties } from "react";
+import { CSSObject } from "@emotion/styled";
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
 export enum size {
   sm = 480,
@@ -27,4 +30,5 @@ export interface ICSSMEDIAProperty {
 
 export interface ICSSProperty extends CSSProperties, ICSSMEDIAProperty {
   as?: keyof JSX.IntrinsicElements;
+  pseudos?: CSSPseudos;
 }

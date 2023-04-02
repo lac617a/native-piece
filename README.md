@@ -1,5 +1,12 @@
+<img src='https://i.ibb.co/yg9ptQy/logo-native-piece.png' width='128' height='128' />
+
+[![Downloads][downloads-badge]][npm]
+[![Version][version-badge]][npm]
+[![MIT License][license-badge]](LICENSE.md)
 
 # native-piece
+
+React primitive UI components. Use the best bits of ES6 and CSS to style your apps without stress
 
 ```sh
 npm i native-piece
@@ -51,5 +58,10 @@ native-piece is intended to be:
 
 * [Emotion][]
 
-[emotion]: https://emotion.sh
 [MIT License](LICENSE.md)
+
+[emotion]: https://emotion.sh
+[downloads-badge]: https://flat.badgen.net/npm/dw/native-piece
+[version-badge]: https://flat.badgen.net/npm/v/native-piece
+[license-badge]: https://flat.badgen.net/badge/license/MIT/blue
+[npm]: https://npmjs.com/package/native-piece
