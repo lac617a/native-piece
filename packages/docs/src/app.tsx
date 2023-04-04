@@ -105,7 +105,7 @@ export function App() {
           <CustomSandpack />
         </Box>
       </Box>
-      {/* <Box
+      <Box
         position="absolute"
         top={300}
         left={0}
@@ -113,7 +113,7 @@ export function App() {
         zIndex={-1}
         transform="scaleX(-1)">
         <img style={{ width: "100%", height: "100%" }} src={IconDashed} alt="dashed-treasure" />
-      </Box> */}
+      </Box>
     </Box>
   );
 }

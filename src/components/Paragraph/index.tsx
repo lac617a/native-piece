@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { PropType } from "../../../types";
-import Box from "../Box";
+import Box from "../Primitive/Box";
+import { PropsType } from "../../types";
 
-export interface IParagraph extends PropType {
+export interface IParagraph extends PropsType {
   as?: "p" | "span"
 }
 

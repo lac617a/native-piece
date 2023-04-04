@@ -16,7 +16,7 @@ const minifierPlugin = terser({
     keep_infinity: true,
     pure_getters: true,
   },
-  ecma: 5,
+  ecma: 6,
   format: {
     wrap_func_args: false,
     comments: /^\s*([@#]__[A-Z]+__\s*$|@cc_on)/,
@@ -49,11 +49,11 @@ const standaloneProdConfig = {
 export default [
   standaloneProdConfig,
   serverConfig,
+  browserConfig,
   {
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts.default()],
   },
-  browserConfig,
   // hooksConfig,
 ];

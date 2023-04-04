@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Box, Stack, Paragraph, Heading } from "../src/index";
+import { Box, Stack, Paragraph, Heading, Link } from "../src/index";
 
 const root = document.getElementById("root");
 
 ReactDOM.render(
   <Box>
-    <Heading className="Hola">HOOKS</Heading>
+    <Link href="https://google.com">Home</Link>
+    <Heading className="Hola" onClick={() => console.log("Holaa")}>HOOKS</Heading>
 
     <Heading>CSS-COMPONENTS</Heading>
     <Heading>Soy un h2</Heading>

@@ -1,6 +1,6 @@
 {
   "name": "native-piece",
-  "version": "0.1.63",
+  "version": "0.1.64",
   "license": "MIT",
   "author": "Dominyel Rivera - Yoydev",
   "description": "React primitive UI components. Use the best bits of ES6 and CSS to style your apps without stress",
@@ -8,8 +8,7 @@
   "main": "dist/cjs/native-piece.cjs.js",
   "module": "dist/esm/native-piece.esm.js",
   "browser": {
-    "./dist/esm/native-piece.esm.js": "./dist/esm/native-piece.browser.esm.js",
-    "./dist/cjs/native-piece.cjs.js": "./dist/cjs/native-piece.browser.cjs.js"
+    "./dist/esm/native-piece.esm.js": "./dist/esm/native-piece.browser.esm.js"
   },
   "files": ["dist"],
   "keywords": [

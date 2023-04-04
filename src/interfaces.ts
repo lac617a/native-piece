@@ -1,7 +1,8 @@
 import * as CSS from "csstype";
-import { CSSProperties } from "react";
+import { CSSProperties, HTMLProps } from "react";
 import { CSSObject } from "@emotion/styled";
-import { ColorProps, SpaceProps } from "styled-system";
+import { BackgroundProps, ColorProps, SpaceProps } from "styled-system";
+
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
 export enum size {
@@ -29,30 +30,72 @@ export interface ICSSMEDIAProperty {
   mediaMinXl?: ICSSProperty;
   mediaMinXxl?: ICSSProperty;
 }
+// export type CHTMLProps<H> = HTMLProps<React.HTMLAttributes<H>, H>;
 
-export interface ICSSProperty
+interface IStyled
   extends Omit<
       CSSProperties,
-      | "padding"
-      | "paddingTop"
-      | "paddingLeft"
-      | "paddingRight"
-      | "paddingBottom"
+      | "translate"
+      // SPACES
       | "margin"
       | "marginTop"
       | "marginLeft"
       | "marginRight"
       | "marginBottom"
+      | "padding"
+      | "paddingTop"
+      | "paddingLeft"
+      | "paddingRight"
+      | "paddingBottom"
+      // COLORS
       | "color"
       | "opacity"
+      | "background"
+      | "backgroundSize"
+      | "backgroundImage"
       | "backgroundColor"
+      | "backgroundRepeat"
+      | "backgroundPosition"
     >,
     ICSSMEDIAProperty,
     SpaceProps,
-    ColorProps {
-  as?: KeyofJSXType;
-  pseudos?: CSSPseudos;
-  className?: string;
-}
+    ColorProps,
+    BackgroundProps,
+    Omit<HTMLProps<any>, "color" | "content" | "width" | "height"> {}
 
-export type KeyofJSXType = keyof Pick<JSX.IntrinsicElements, "a" | "article" | "aside" | "b" | "blockquote" | "body" | "code" | "dialog" | "div" | "footer" | "figcaption" | "figure" | "form" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "header" | "hgroup" | "hr" | "img" | "input" | "label" | "li" | "main" | "nav" | "ol" | "p" | "section" | "span" | "strong" | "table" | "td" | "thead" | "th" | "tfoot" | "tbody" | "tr" | "ul">;
+// type JsxType = JSX.IntrinsicElements[KeyofJSXType];
+
+export type KeyofJSXType = keyof Pick<
+  JSX.IntrinsicElements,
+  | "a"
+  | "article"
+  | "aside"
+  | "div"
+  | "footer"
+  | "figcaption"
+  | "figure"
+  | "form"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "header"
+  | "img"
+  | "input"
+  | "label"
+  | "li"
+  | "main"
+  | "nav"
+  | "ol"
+  | "p"
+  | "section"
+  | "span"
+  | "ul"
+>;
+
+export interface ICSSProperty extends IStyled {
+  as?: KeyofJSXType;
+  className?: string;
+  pseudos?: CSSPseudos;
+}

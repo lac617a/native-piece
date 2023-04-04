@@ -1,10 +1,9 @@
 import React from "react";
 import DefaultStack from "./Stack";
 
-import { MutableRefObject } from "react";
-import { PropType } from "../../../types";
+import { PropsType } from "../../../types";
 
-export interface IStack extends PropType {
+export interface IStack extends PropsType {
   display?: "flex"
 }
 export interface IVStack extends IStack {
@@ -12,10 +11,10 @@ export interface IVStack extends IStack {
 }
 
 export type StackComponentsType = ((
-  props: IStack & { ref?: MutableRefObject<any>}
+  props: IStack 
 ) => JSX.Element) & {
   V: React.MemoExoticComponent<
-    (props: IVStack & { ref?: MutableRefObject<any>}) => JSX.Element
+    (props: IVStack) => JSX.Element
   >
 }
 
