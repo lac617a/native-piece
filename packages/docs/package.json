@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.2.1",
-    "native-piece": "^0.1.66",
-    "preact": "^10.13.0"
+    "native-piece": "^1.0.2",
+    "preact": "^10.13.0",
+    "react-icons": "^4.8.0",
+    "react-live": "^4.0.0",
+    "remove": "^0.1.5",
+    "wouter": "^2.10.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",

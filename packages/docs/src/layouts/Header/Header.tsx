@@ -1,9 +1,10 @@
-import React, { useState } from "preact/hooks";
+import React from "preact/hooks";
+import { Link } from "wouter";
 import { Box, Stack } from "native-piece";
-import IconShipWheel from "../assets/icons/icon-ship-wheel.png";
+
+import IconShipWheel from "../../assets/icons/icon-ship-wheel.png";
 import "./header.css";
 function Header() {
-  const [count, setCount] = useState(0);
 
   return (
     <Box backgroundColor="#FFFF" height={80}>
@@ -15,11 +16,15 @@ function Header() {
         color="#161616"
         justifyContent="center">
 
-        <Box as="li" className="nav-item">
+        {/* <Box as="li" className="nav-item">
+          <Link href="/docs" className="nav-item-link">
+
           <a href="/" className="nav-item-link">Guia</a>
-        </Box>
+        </Box> */}
         <Box as="li" className="nav-item">
-          <a href="/" className="nav-item-link">Documentacion</a>
+          <Link href="/docs" className="nav-item-link">
+            Documentacion
+          </Link>
         </Box>
       </Stack>
       <Box position="absolute" top="5.5rem" right={0} left={0}>
@@ -39,7 +44,7 @@ function Header() {
           }
         }}
         transform="rotate(10deg)">
-        <img src={IconShipWheel} alt="ship-wehel" />
+        <img src={IconShipWheel} alt="ship-wheel" />
       </Box>
     </Box>
   );
