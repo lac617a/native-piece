@@ -5,6 +5,7 @@ import {
   SandpackPreview,
   SandpackProvider,
   SandpackCodeEditor,
+  SandpackFileExplorer,
 } from "@codesandbox/sandpack-react";
 import IconCadena from "../assets/icons/icon-cadena.png";
 
@@ -44,6 +45,7 @@ const CustomSandpack = () => {
         <img src={IconCadena} alt="cadena" />
       </Box>
       <SandpackProvider template="react-ts" files={files} customSetup={{ dependencies }}>
+        <SandpackFileExplorer/>
         <Box borderRadius={12} overflow="hidden" marginBottom="2rem">
           <SandpackPreview
             showRefreshButton={false}
