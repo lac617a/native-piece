@@ -34,6 +34,7 @@ export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
   format: "umd",
   globals,
+  sourcemap: true,
 };
 
 export const commonPlugins = [
@@ -54,7 +55,7 @@ export const commonPlugins = [
     babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
     extensions: EXTENSIONS,
-    include: EXTENSIONS.map((ext) => `arc/**/*${ext}`),
+    include: EXTENSIONS.map((ext) => `src/**/*${ext}`),
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",

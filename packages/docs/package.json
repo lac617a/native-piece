@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.2.1",
-    "native-piece": "^0.1.64",
+    "native-piece": "^0.1.66",
     "preact": "^10.13.0"
   },
   "devDependencies": {
