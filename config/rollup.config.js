@@ -34,7 +34,7 @@ export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
   format: "umd",
   globals,
-  sourcemap: true,
+  // sourcemap: true,
 };
 
 export const commonPlugins = [

@@ -1,12 +1,16 @@
 import path from "path";
 
 export const ROOT_DIR = path.join(__dirname, "..");
-export const SRC_DIR = path.join(ROOT_DIR, "src");
-export const DIST_DIR = path.join(ROOT_DIR, "dist");
-export const PKG_DIR = path.join(ROOT_DIR, "packages");
+export const ROOT_PKG = path.join(ROOT_DIR, "packages");
+export const PKG_DIR = path.join(ROOT_PKG, "native-piece");
+
 export const EXAMPLE_DIR = path.join(ROOT_DIR, "example");
-export const tsconfig = path.join(ROOT_DIR, "tsconfig.json");
-export const PACKAGES_DIR = path.join(ROOT_DIR, "packages.json");
+
+// NATIVE-PIECE
+export const SRC_DIR = path.join(PKG_DIR, "src");
+export const DIST_DIR = path.join(PKG_DIR, "dist");
+export const tsconfig = path.join(PKG_DIR, "tsconfig.json");
+export const PACKAGES_DIR = path.join(PKG_DIR, "packages.json");
 
 export const EXTENSIONS = [".ts", ".tsx"];
 

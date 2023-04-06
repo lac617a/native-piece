@@ -57,10 +57,12 @@ native-piece is intended to be:
 ## Related
 
 * [Emotion][]
+* [Styled-system][]
 
 [MIT License](LICENSE.md)
 
 [emotion]: https://emotion.sh
+[styled-system]: https://styled-system.com
 [downloads-badge]: https://flat.badgen.net/npm/dw/native-piece
 [version-badge]: https://flat.badgen.net/npm/v/native-piece
 [license-badge]: https://flat.badgen.net/badge/license/MIT/blue

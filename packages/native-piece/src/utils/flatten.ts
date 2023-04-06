@@ -10,9 +10,7 @@ import addUnitIfNeeded from "./addUnitlfNeeded";
 
 const propertyInclude = (property: string): boolean => {
   const PROPERTY = ALLPROPERTY.some(
-    (value) =>
-      value.replace("-", "") ===
-      (typeof property === "string" && property?.toLowerCase())
+    (value) => humanize(value) === humanize(property)
   );
   return PROPERTY;
 };
@@ -29,7 +27,7 @@ const nativeProps: string[] = [
   "mediaMinLg",
   "mediaMinXl",
   "mediaMinXxl",
-  ...ALLPROPERTY,
+  ...ALLPROPERTY.map((str) => humanize(str)),
 ];
 
 const PRE = new RegExp(`^(${nativeProps.join("|")})$`);
@@ -92,6 +90,15 @@ const objToCssArray = (obj: Dict<any>, prevKey?: string): string[] => {
   return prevKey ? [`${prevKey} {`, ...rules, "}"] : [...newRules];
 };
 
+function humanize(str: string) {
+  let i = 0;
+  const frags = str.split("-");
+  for (i; i < frags.length; i++) {
+    frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
+  }
+  return frags.join("").charAt(0).toLowerCase() + frags.join("").substring(1);
+}
+
 type SetMediaQueryType = {
   id: number;
   media: string;
@@ -147,6 +154,7 @@ const getSystemStyledProps = getProps((regexp: string) => PRE.test(regexp));
 export const reactPropsTypes = getProps((regexp: string) => !PRE.test(regexp));
 
 export const systemStyledTypes = (props: CSSProperties): string =>
-  objToCssArray({ ...getSystemStyledProps(props) })
-    .toString()
-    .replace(new RegExp(",", "g"), "\n");
+  objToCssArray({ ...getSystemStyledProps(props) }).join("\n");
+
+// .toString()
+//   .replace(new RegExp(",", "g"), "\n");

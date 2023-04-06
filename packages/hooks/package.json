@@ -1,8 +1,0 @@
-{
-  "name": "native-piece/hooks",
-  "private": true,
-  "types": "./dist/index.d.ts",
-  "main": "./dist/native-piece.hooks.cjs.js",
-  "module": "./dist/native-piece.hooks.esm.js",
-  "jsnext:main": "./dist/native-piece.hooks.esm.js"
-}

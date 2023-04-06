@@ -1,7 +1,7 @@
 import * as CSS from "csstype";
 import { CSSProperties, HTMLProps } from "react";
 import { CSSObject } from "@emotion/styled";
-import { BackgroundProps, ColorProps, SpaceProps } from "styled-system";
+import { ColorProps, SpaceProps } from "styled-system";
 
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
@@ -32,11 +32,11 @@ export interface ICSSMEDIAProperty {
 }
 // export type CHTMLProps<H> = HTMLProps<React.HTMLAttributes<H>, H>;
 
-interface IStyled
-  extends Omit<
-      CSSProperties,
-      | "translate"
-      // SPACES
+export interface IStyledNative
+  extends Omit<CSSProperties, "translate">,
+    ICSSMEDIAProperty,
+    Omit<
+      SpaceProps,
       | "margin"
       | "marginTop"
       | "marginLeft"
@@ -47,7 +47,9 @@ interface IStyled
       | "paddingLeft"
       | "paddingRight"
       | "paddingBottom"
-      // COLORS
+    >,
+    Omit<
+      ColorProps,
       | "color"
       | "opacity"
       | "background"
@@ -56,12 +58,11 @@ interface IStyled
       | "backgroundColor"
       | "backgroundRepeat"
       | "backgroundPosition"
-    >,
-    ICSSMEDIAProperty,
-    SpaceProps,
-    ColorProps,
-    BackgroundProps,
-    Omit<HTMLProps<any>, "color" | "content" | "width" | "height"> {}
+    > {
+  as?: KeyofJSXType;
+  className?: string;
+  pseudos?: CSSPseudos;
+}
 
 // type JsxType = JSX.IntrinsicElements[KeyofJSXType];
 
@@ -70,6 +71,7 @@ export type KeyofJSXType = keyof Pick<
   | "a"
   | "article"
   | "aside"
+  | "button"
   | "div"
   | "footer"
   | "figcaption"
@@ -94,8 +96,6 @@ export type KeyofJSXType = keyof Pick<
   | "ul"
 >;
 
-export interface ICSSProperty extends IStyled {
-  as?: KeyofJSXType;
-  className?: string;
-  pseudos?: CSSPseudos;
-}
+export interface ICSSProperty
+  extends IStyledNative,
+    Omit<HTMLProps<any>, "color" | "content" | "width" | "height" | "as" | "size"> {}

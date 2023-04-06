@@ -6,7 +6,8 @@
   "scripts": {
     "build": "yarn workspace native-piece build",
     "build:hooks": "yarn workspace hooks build",
-    "dev": "yarn workspace native-piece dev"
+    "dev": "yarn workspace native-piece dev",
+    "dev:sandbox": "yarn workspace sandbox dev"
   },
   "dependencies": {},
   "repository": {
