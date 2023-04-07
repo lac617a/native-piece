@@ -2,13 +2,18 @@ import React from "react";
 import Box from "../Box";
 import { PropsType } from "../../../types";
 
-export interface IStackProps extends Omit<PropsType<HTMLDivElement>, "display" | "as"> { }
-export interface IVStackProps extends Omit<IStackProps, "flexDirection" | "msFlexDirection"> { }
+export interface IStackProps extends
+  Omit<PropsType<HTMLDivElement>, "display"> { }
+export interface IVStackProps extends
+  Omit<IStackProps, "flexDirection" | "msFlexDirection"> { }
 
 type StackComponentsType = ((
   props: IStackProps
 ) => JSX.Element) & {
   V: React.MemoExoticComponent<
+    (props: IVStackProps) => JSX.Element
+  >,
+  Block: React.MemoExoticComponent<
     (props: IVStackProps) => JSX.Element
   >
 }

@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { Box } from "native-piece/src";
+import { Box, Stack } from "native-piece";
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <Box className="App">
-      <div>
+    <Box className="App" >
+      <Stack gap="5rem">
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://reactjs.org" target="_blank" rel="noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-      </div>
+      </Stack>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>

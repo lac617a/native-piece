@@ -26,6 +26,7 @@ export const globals = {
   "react-dom": "ReactDOM",
   "@emotion/styled": "styled",
   "styled-system": "styledSystem",
+  "@styled-system/should-forward-prop": "shouldForwardProp$1",
 };
 
 // Array of extensions to be handled by babel

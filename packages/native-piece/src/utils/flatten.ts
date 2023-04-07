@@ -21,6 +21,7 @@ const propertyInclude = (property: string): boolean => {
 };
 
 const nativeProps: string[] = [
+  "gap",
   "mediaSm",
   "mediaMd",
   "mediaLg",
@@ -32,7 +33,7 @@ const nativeProps: string[] = [
   "mediaMinLg",
   "mediaMinXl",
   "mediaMinXxl",
-  // ...ALLPROPERTY.map((str) => humanize(str)),
+  ...ALLPROPERTY.map((str) => humanize(str)),
 ];
 
 const PRE = new RegExp(`^(${nativeProps.join("|")})$`);
@@ -58,8 +59,6 @@ const objToCssArray = (obj: Dict<any>): string[] => {
       rules.push(
         `@media only screen and ${mediaQuery} {${objToCssArray(val)}}`
       );
-    } else if (isPlainObject(val)) {
-      rules.push(`${key} {`, ...objToCssArray(val), "}");
     }
   }
 

@@ -1,4 +1,3 @@
-import React from "preact";
 import { Box, Heading, Paragraph, Stack } from "native-piece";
 
 import IconSniper from "../assets/icons/icon-sniper.svg";
@@ -13,7 +12,7 @@ export function Main() {
     <Box position="relative">
       <Box as="article" position="relative" zIndex={1}>
         <Box as="section" height="70vh" marginX={50} marginBottom={70}>
-          <Stack gap="10%" alignItems="center">
+          <Stack gap="1rem" alignItems="center">
             <Box height={200} width={200} backgroundColor="var(--secundary)" />
             <Stack.V maxWidth={430}>
               <Box position="relative">

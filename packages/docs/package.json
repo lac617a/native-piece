@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "native-piece": "^1.0.2",
+    "native-piece": "^1.0.7",
     "preact": "^10.13.0",
     "react-icons": "^4.8.0",
     "react-live": "^4.0.0",

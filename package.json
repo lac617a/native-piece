@@ -5,6 +5,7 @@
   "author": "Dominyel Rivera - Yoydev",
   "scripts": {
     "build": "yarn workspace native-piece build",
+    "prepublish": "yarn workspace native-piece publish",
     "build:hooks": "yarn workspace hooks build",
     "dev": "yarn workspace native-piece dev",
     "dev:sandbox": "yarn workspace sandbox dev"

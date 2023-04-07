@@ -1,6 +1,6 @@
 {
   "name": "native-piece",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "license": "MIT",
   "author": "Dominyel Rivera - Yoydev",
   "description": "React primitive UI components. Use the best bits of ES6 and CSS to style your apps without stress",
@@ -65,12 +65,13 @@
     "@styled-system/should-forward-prop": "^5.1.5"
   },
   "peerDependencies": {
-    "tslib": "^2.0.0",
+    "tslib": "2.0.0",
     "react": ">= 16.8.0",
     "react-dom": ">= 16.8.0",
     "styled-system": ">= 5.1.5",
     "@emotion/react": ">= 11.10.6",
-    "@emotion/styled": ">= 11.10.6"
+    "@emotion/styled": ">= 11.10.6",
+    "@styled-system/should-forward-prop": ">= 5.1.5"
   },
   "homepage": "https://native-piece.com",
   "bugs": {
