@@ -23,8 +23,7 @@ const prefixAndLowerCase = (char: string): string => `-${char.toLowerCase()}`;
 export default function hyphenateStyleName(string: string) {
   return uppercaseCheck.test(string) && !string.startsWith("--")
     ? string
-      .replace(uppercasePattern, prefixAndLowerCase)
-      .replace(msPattern, "-ms-")
+        .replace(uppercasePattern, prefixAndLowerCase)
+        .replace(msPattern, "-ms-")
     : string;
 }
-

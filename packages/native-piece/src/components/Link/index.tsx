@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import Box from "../Primitive/Box";
-import { IStyledNative } from "../../interfaces";
-
-export interface ILinkProps extends Omit<IStyledNative, "color" | "translate" | "content">,
-  React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
+import { PropsType } from "../../types";
+export interface ILinkProps extends PropsType<HTMLAnchorElement> {
   children?: React.ReactNode | JSX.Element | JSX.Element[];
+  as?: "a" | "link";
 }
 
 const Link: FC<ILinkProps> = (props) =>

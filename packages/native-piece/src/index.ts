@@ -1,8 +1,9 @@
 export { ICSSProperty } from "./interfaces";
 
-export { default as Box, IBox } from "./components/Primitive/Box";
+export { default as Box, IBoxProps } from "./components/Primitive/Box";
+export { default as Grid, IGridProps } from "./components/Grid";
 export { default as Stack } from "./components/Primitive/Stack";
-export { IStack, IVStack } from "./components/Primitive/Stack";
+export { IStackProps, IVStackProps } from "./components/Primitive/Stack";
 export { default as Link, ILinkProps } from "./components/Link";
-export { default as Heading, IHeading } from "./components/Heading";
-export { default as Paragraph, IParagraph } from "./components/Paragraph";
+export { default as Heading, IHeadingProps } from "./components/Heading";
+export { default as Paragraph, IParagraphProps } from "./components/Paragraph";

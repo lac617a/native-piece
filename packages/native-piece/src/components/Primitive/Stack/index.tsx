@@ -1,28 +1,23 @@
 import React from "react";
-import DefaultStack from "./Stack";
-
+import Box from "../Box";
 import { PropsType } from "../../../types";
 
-export interface IStack extends PropsType {
-  display?: "flex"
-}
-export interface IVStack extends IStack {
-  flexDirection?: "column"
-}
+export interface IStackProps extends Omit<PropsType<HTMLDivElement>, "display" | "as"> { }
+export interface IVStackProps extends Omit<IStackProps, "flexDirection" | "msFlexDirection"> { }
 
-export type StackComponentsType = ((
-  props: IStack 
+type StackComponentsType = ((
+  props: IStackProps
 ) => JSX.Element) & {
   V: React.MemoExoticComponent<
-    (props: IVStack) => JSX.Element
+    (props: IVStackProps) => JSX.Element
   >
 }
 
-const TempStack: any = DefaultStack;
-
+// COMPONENT's
+const TempStack: any = (props: IStackProps) => <Box display="flex" {...props} />;
 const Stack = TempStack as StackComponentsType;
-
-// eslint-disable-next-line react/display-name
-TempStack.V = (props: IVStack) => <Stack flexDirection="column" {...props} />;
+const StackV = (props: IVStackProps) => <Stack flexDirection="column" {...props} />;
+TempStack.V = StackV;
+TempStack.Block = StackV;
 
 export default Stack; 

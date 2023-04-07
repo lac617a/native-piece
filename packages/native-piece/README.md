@@ -1,4 +1,8 @@
-<img src='https://i.ibb.co/yg9ptQy/logo-native-piece.png' width='128' height='128' />
+<div align="center">
+  <a href="https://www.native-piece.com">
+    <img src='https://i.ibb.co/yg9ptQy/logo-native-piece.png' width='150px' height='150px' alt="native-piece" />
+  </a>
+</div>
 
 [![Downloads][downloads-badge]][npm]
 [![Version][version-badge]][npm]

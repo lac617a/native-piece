@@ -3,11 +3,11 @@ import { PropsType } from "../../../types";
 import CreateStyled from "../../../core/createStyled";
 import { reactPropsTypes } from "../../../utils/flatten";
 
-export interface IBox extends PropsType { }
+export interface IBoxProps extends PropsType<any> { }
 
-const Box: FC<IBox> = (props) => {
-  const As = CreateStyled<IBox>(props.as || "div", props);
+const Box: FC<IBoxProps> = (props) => {
+  const As = CreateStyled<IBoxProps>(props.as || "div", props);
   return <As {...reactPropsTypes(props)} />;
 };
 
-export default Box;
+export default Box; 

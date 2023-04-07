@@ -3,8 +3,9 @@ import * as styledSystem from "styled-system";
 import emStyled, { CSSObject, StyledOptions } from "@emotion/styled";
 import { createShouldForwardProp, props } from "@styled-system/should-forward-prop";
 
+import { KeyofJSXType } from "../types";
+import { ICSSProperty } from "../interfaces";
 import { systemStyledTypes } from "../utils/flatten";
-import { ICSSProperty, KeyofJSXType } from "../interfaces";
 
 function styledNative(tag: KeyofJSXType, options: StyledOptions) {
   const stylesFactory = emStyled(tag, options);
@@ -59,7 +60,7 @@ function Styled<P = object>(tags: KeyofJSXType, props: P, css?: ICSSProperty) {
     styledSystem.borderRadius,
   )}
     ${(props as any).pseudos}
-  `;
+  ` as React.ComponentType<Exclude<React.HTMLAttributes<HTMLDivElement>, keyof P> & P>;
 }
 
 const CreateStyled = Styled;
