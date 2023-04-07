@@ -25,7 +25,7 @@ export const globals = {
   react: "React",
   "react-dom": "ReactDOM",
   "@emotion/styled": "styled",
-  // "styled-system": "styledSystem",
+  "styled-system": "styledSystem",
 };
 
 // Array of extensions to be handled by babel
@@ -34,7 +34,7 @@ export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
   format: "umd",
   globals,
-  // sourcemap: true,
+  sourcemap: true,
 };
 
 export const commonPlugins = [
@@ -50,7 +50,10 @@ export const commonPlugins = [
     browser: true,
   }),
   peerDepsExternal(),
-  commonjs(),
+  commonjs({
+    esmExternals: false,
+    ignoreGlobal: true,
+  }),
   babel({
     babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
@@ -128,7 +131,6 @@ export const serverConfig = {
 export const browserConfig = {
   ...configBase,
   output: [
-    getESM({ file: "dist/esm/native-piece.browser.esm.js" }),
     getCJS({ file: "dist/cjs/native-piece.browser.cjs.js" }),
   ],
   plugins: configBase.plugins.concat(

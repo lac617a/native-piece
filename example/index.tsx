@@ -1,11 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Box, Stack, Paragraph, Heading, Link } from "../packages/native-piece/src";
+import { Box, Grid, Stack, Paragraph, Heading, Link } from "../packages/native-piece/src";
 
 const root = document.getElementById("root");
 
 ReactDOM.render(
   <Box>
+    <Box as="input" />
+    <Grid gridGap={100} gridTemplateColumns="1fr 1fr" gridTemplateRows="repeat(2, 1fr)">
+      <Box as="input" />
+
+      <Box as="input" placeholder="hopla" gridColumn={2} />
+
+      <Box as="input" />
+
+    </Grid>
     <Box
       display="grid"
       gap="2rem"
@@ -43,8 +52,10 @@ ReactDOM.render(
         </Paragraph>
       </Stack.V>
     </Box>
-    <Link color="yellow" textDecoration="none" href="https://google.com">Home</Link>
-    <Heading className="Hola" onClick={() => console.log("Holaa")}>HOOKS</Heading>
+    <Stack>
+      <Link color="yellow" textDecoration="none" href="https://google.com">Home</Link>
+      <Heading className="Hola" onClick={() => console.log("Holaa")}>HOOKS</Heading>
+    </Stack>
 
     <Heading>CSS-COMPONENTS</Heading>
     <Heading>Soy un h2</Heading>
