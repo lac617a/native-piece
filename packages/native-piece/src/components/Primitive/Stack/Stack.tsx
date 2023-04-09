@@ -1,6 +1,9 @@
 import React, { FC } from "react";
 import Box from "../Box";
-import { IStackProps } from ".";
+import { PropsType } from "../../../types";
+
+export interface IStackProps extends
+  Omit<PropsType<HTMLDivElement>, "display"> { }
 
 const Stack: FC<IStackProps> = (props) =>
   <Box display="flex" {...props} />;
