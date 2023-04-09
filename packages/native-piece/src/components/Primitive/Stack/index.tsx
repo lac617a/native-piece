@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "../Box";
+import DefaultStack from "./Stack";
 import { PropsType } from "../../../types";
 
 export interface IStackProps extends
@@ -10,19 +10,18 @@ export interface IVStackProps extends
 type StackComponentsType = ((
   props: IStackProps
 ) => JSX.Element) & {
-  V: React.MemoExoticComponent<
-    (props: IVStackProps) => JSX.Element
-  >,
   Block: React.MemoExoticComponent<
     (props: IVStackProps) => JSX.Element
   >
 }
 
 // COMPONENT's
-const TempStack: any = (props: IStackProps) => <Box display="flex" {...props} />;
+const TempStack: any = DefaultStack;
+const StackBlock = (props: IVStackProps) =>
+  <DefaultStack flexDirection="column" {...props} />;
+
+TempStack.Block = StackBlock;
+
 const Stack = TempStack as StackComponentsType;
-const StackV = (props: IVStackProps) => <Stack flexDirection="column" {...props} />;
-TempStack.V = StackV;
-TempStack.Block = StackV;
 
 export default Stack; 
