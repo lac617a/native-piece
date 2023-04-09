@@ -56,5 +56,4 @@ export interface IStyledNative
   pseudos?: CSSPseudos;
 }
 
-
 export interface ICSSProperty extends IStyledNative {}

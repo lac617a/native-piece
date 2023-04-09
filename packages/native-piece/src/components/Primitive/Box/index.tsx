@@ -3,7 +3,7 @@ import { PropsType } from "../../../types";
 import CreateStyled from "../../../core/createStyled";
 import { reactPropsTypes } from "../../../utils/flatten";
 
-export interface IBoxProps extends PropsType<any> { }
+export interface IBoxProps extends PropsType<HTMLDivElement | any> { }
 
 const Box: FC<IBoxProps> = (props) => {
   const As = CreateStyled<IBoxProps>(props.as || "div", props);

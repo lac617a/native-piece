@@ -5,7 +5,9 @@ import { CSSObject } from "@emotion/styled";
 
 export type PropsType<HTML extends HTMLElement, P = object> = {
   children?: React.ReactNode | JSX.Element | JSX.Element[];
-} & ICSSProperty & P & DetailedHTMLProps<React.AllHTMLAttributes<HTML>, HTML>
+} & ICSSProperty &
+  P &
+  DetailedHTMLProps<React.AllHTMLAttributes<HTML>, HTML>;
 
 export type Dict<T> = { [key: string]: T };
 export type DOMProps = React.DOMAttributes<HTMLElement>;

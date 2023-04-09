@@ -57,11 +57,10 @@ const objToCssArray = (obj: Dict<any>): string[] => {
       const { mediaOnly, exactMedia } = findTypeMediaQuery(key);
       const mediaQuery = getMediaExact(mediaOnly)[exactMedia];
       rules.push(
-        `@media only screen and ${mediaQuery} {${objToCssArray(val)}}`
+        `@media only screen and ${mediaQuery} {${objToCssArray(val).join(" ")}}`
       );
     }
   }
-
   const newRules = new Set([...recordMediaQuery(rules), ...rules]);
   return [...newRules];
 };
