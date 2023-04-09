@@ -59,7 +59,7 @@ export const commonPlugins = [
     babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
     extensions: EXTENSIONS,
-    include: EXTENSIONS.map((ext) => `src/**/*${ext}`),
+    // include: EXTENSIONS.map((ext) => `packages/native-piece/src/**/*${ext}`),
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",

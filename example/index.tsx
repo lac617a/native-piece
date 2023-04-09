@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Box, Grid, Stack, Paragraph, Heading, Link } from "../packages/native-piece/src";
+import { Box, Grid, Stack, VStack, Paragraph, Heading, Link } from "../packages/native-piece/src";
 
 const root = document.getElementById("root");
 
@@ -21,7 +21,7 @@ ReactDOM.render(
       paddingBottom="4rem"
       gridTemplateRows="1fr"
       gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))">
-      <Stack.V gap="8px">
+      <VStack gap="8px">
         <Paragraph className="text text-h5">
           Coding
         </Paragraph>
@@ -30,8 +30,8 @@ ReactDOM.render(
           Providing the users an enriching experience that responds to
           any device and screen size.
         </Paragraph>
-      </Stack.V>
-      <Stack.V gap="8px">
+      </VStack>
+      <VStack gap="8px">
         <Paragraph className="text text-h5">
           Coding
         </Paragraph>
@@ -40,8 +40,8 @@ ReactDOM.render(
           Providing the users an enriching experience that responds to
           any device and screen size.
         </Paragraph>
-      </Stack.V>
-      <Stack.V gap="8px">
+      </VStack>
+      <VStack gap="8px">
         <Paragraph className="text text-h5">
           Coding
         </Paragraph>
@@ -50,7 +50,7 @@ ReactDOM.render(
           Providing the users an enriching experience that responds to
           any device and screen size.
         </Paragraph>
-      </Stack.V>
+      </VStack>
     </Box>
     <Stack>
       <Link color="yellow" textDecoration="none" href="https://google.com">Home</Link>
@@ -72,8 +72,12 @@ ReactDOM.render(
         transition="300ms"
         fontFamily="Serif"
         backgroundColor="crimson"
-        mediaLg={{ backgroundColor: "tomato" }}
-        mediaMd={{ backgroundColor: "yellow" }}
+        mediaLg={{
+          backgroundColor: "tomato",
+          color: "yellow",
+          margin: "20px",
+          maxWidth: "max-content"
+        }}
         pseudos={{
           ":hover": {
             color: "red"
@@ -86,7 +90,7 @@ ReactDOM.render(
         <h1>justifyContent=flex-start</h1>
       </Stack>
 
-      <Stack.V
+      <VStack
         justifyContent="center"
         backgroundColor="blue"
         color="white"
@@ -94,7 +98,7 @@ ReactDOM.render(
         <h1>justifyContent=center</h1>
         <h1>justifyContent=center</h1>
         <h1>justifyContent=center</h1>
-      </Stack.V>
+      </VStack>
 
       <Stack justifyContent="flex-end" backgroundColor="red">
         <h1>justifyContent=flex-end</h1>
