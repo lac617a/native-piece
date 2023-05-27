@@ -1,10 +1,6 @@
-/* eslint-disable no-prototype-builtins */
-import { CSSProperties } from "react";
-
 import { Dict } from "../types";
 import humanize from "./humanize";
 import { ALLPROPERTY } from "./domStyled";
-import isPlainObject from "./isPlainObject";
 import hyphenate from "./hyphenateStyleName";
 import addUnitIfNeeded from "./addUnitlfNeeded";
 import {
@@ -12,6 +8,7 @@ import {
   recordMediaQuery,
   findTypeMediaQuery,
 } from "./reponsive";
+import { ICSSProperty } from "../interfaces";
 
 const propertyInclude = (property: string): boolean => {
   const PROPERTY = ALLPROPERTY.some(
@@ -22,6 +19,7 @@ const propertyInclude = (property: string): boolean => {
 
 const nativeProps: string[] = [
   "gap",
+  "cursor",
   "mediaSm",
   "mediaMd",
   "mediaLg",
@@ -65,7 +63,7 @@ const objToCssArray = (obj: Dict<any>): string[] => {
   return [...newRules];
 };
 
-const getProps = (test: (string: string) => boolean) => (props: any) => {
+const getProps = (test: (string: string) => boolean) => (props: {}) => {
   const next: any = {};
   for (const key in props) {
     if (test(key || "")) next[key] = props[key];
@@ -76,8 +74,5 @@ const getProps = (test: (string: string) => boolean) => (props: any) => {
 const getSystemStyledProps = getProps((regexp: string) => PRE.test(regexp));
 export const reactPropsTypes = getProps((regexp: string) => !PRE.test(regexp));
 
-export const systemStyledTypes = (props: CSSProperties): string =>
+export const systemStyledTypes = (props: ICSSProperty): string =>
   objToCssArray({ ...getSystemStyledProps(props) }).join("\n");
-
-// .toString()
-//   .replace(new RegExp(",", "g"), "\n");

@@ -1,10 +1,9 @@
-import React, { FC } from "react";
-import Box from "../Box";
-import { IStackProps } from "./Stack";
+import React from "react";
+import Stack, { IStackProps } from "./Stack";
 
 export interface IVStackProps extends IStackProps { }
 
-const VStack: FC<IVStackProps> = (props) =>
-  <Box display="flex" flexDirection="column" {...props} />;
+const VStack = React.forwardRef<HTMLDivElement, IVStackProps>((inProps, ref) => 
+  <Stack ref={ref as any} display="flex" flexDirection="column" {...inProps} />);
 
 export default VStack;

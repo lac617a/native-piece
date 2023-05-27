@@ -10,19 +10,25 @@ export enum size {
   xxl = 1400,
 }
 
-export interface ICSSMEDIAProperty {
+export interface ICSSMEDIAProperty<Styled = ICSSProperty> {
   // MEDIAQUERY
-  mediaSm?: ICSSProperty;
-  mediaMd?: ICSSProperty;
-  mediaLg?: ICSSProperty;
-  mediaXl?: ICSSProperty;
-  mediaXxl?: ICSSProperty;
+  mediaSm?: Styled;
+  mediaMd?: Styled;
+  mediaLg?: Styled;
+  mediaXl?: Styled;
+  mediaXxl?: Styled;
 
-  mediaMinSm?: ICSSProperty;
-  mediaMinMd?: ICSSProperty;
-  mediaMinLg?: ICSSProperty;
-  mediaMinXl?: ICSSProperty;
-  mediaMinXxl?: ICSSProperty;
+  mediaMinSm?: Styled;
+  mediaMinMd?: Styled;
+  mediaMinLg?: Styled;
+  mediaMinXl?: Styled;
+  mediaMinXxl?: Styled;
+}
+
+export interface IBaseStyled {
+  className?: string;
+  pseudos?: CSSPseudos;
+  children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 export interface IStyledNative
   extends Omit<CSSProperties, "translate">,
@@ -50,10 +56,7 @@ export interface IStyledNative
       | "backgroundColor"
       | "backgroundRepeat"
       | "backgroundPosition"
-    > {
-  as?: KeyofJSXType;
-  className?: string;
-  pseudos?: CSSPseudos;
-}
+    >,
+    IBaseStyled {}
 
 export interface ICSSProperty extends IStyledNative {}

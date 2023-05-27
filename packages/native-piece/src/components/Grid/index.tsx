@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React from "react";
 import { GridProps } from "styled-system";
 
-import Box from "../Primitive/Box";
 import { PropsType } from "../../types";
+import CreateStyled from "../../core/createStyled";
+import { reactPropsTypes } from "../../utils/flatten";
 
 export interface IGridProps extends
   Omit<
@@ -30,7 +31,9 @@ export interface IGridProps extends
   children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
-const Grid: FC<IGridProps> = (props) =>
-  <Box display="grid" {...props} />;
+const Grid = React.forwardRef<HTMLDivElement, IGridProps>((inProps, ref) => {
+  const GridRoot = CreateStyled<IGridProps>('div', inProps);
+  return <GridRoot ref={ref} display="grid" {...reactPropsTypes(inProps)} />
+});
 
 export default Grid;

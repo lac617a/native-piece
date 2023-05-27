@@ -3,7 +3,7 @@ import { DetailedHTMLProps } from "react";
 import { ICSSProperty } from "./interfaces";
 import { CSSObject } from "@emotion/styled";
 
-export type PropsType<HTML extends HTMLElement, P = object> = {
+export type PropsType<HTML extends HTMLElement = HTMLElement, P = object> = {
   children?: React.ReactNode | JSX.Element | JSX.Element[];
 } & ICSSProperty &
   P &
@@ -15,6 +15,21 @@ export type Merge<M, N> = Omit<M, Extract<keyof M, keyof N>> & N;
 
 export type OnlyKey<S> = { [E in keyof S]: E };
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
+
+export type KeyofJSXTypography = keyof Pick<
+  JSX.IntrinsicElements,
+  | "p"
+  | "dl"
+  | "kbd"
+  | "pre"
+  | "span"
+  | "code"
+  | "mark"
+  | "abbr"
+  | "small"
+  | "blockquote"
+>;
+
 export type KeyofJSXType = keyof Pick<
   JSX.IntrinsicElements,
   | "a"
@@ -40,9 +55,7 @@ export type KeyofJSXType = keyof Pick<
   | "main"
   | "nav"
   | "ol"
-  | "p"
   | "textarea"
   | "section"
-  | "span"
   | "ul"
->;
+> & KeyofJSXTypography;
