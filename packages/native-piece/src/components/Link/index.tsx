@@ -3,8 +3,7 @@ import { PropsType } from "../../types";
 import CreateStyled from "../../core/createStyled";
 import { reactPropsTypes } from "../../utils/flatten";
 
-export interface ILinkProps extends PropsType<HTMLAnchorElement> {
-  children?: React.ReactNode | JSX.Element | JSX.Element[];
+export interface ILinkProps extends Omit<PropsType<"a">, "as"> {
   as?: "a" | "link";
 }
 

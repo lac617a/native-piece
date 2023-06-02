@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { ColorProps, SpaceProps } from "styled-system";
-import { CSSPseudos, KeyofJSXType } from "./types";
+import { CSSPseudos } from "./types";
 
 export enum size {
   sm = 480,

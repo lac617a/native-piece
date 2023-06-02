@@ -26,7 +26,7 @@ devPlugins.push(
 devPlugins.push(
   livereload({
     watch: "dist",
-    delay: 300
+    delay: 300,
   })
 );
 

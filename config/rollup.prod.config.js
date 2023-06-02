@@ -1,6 +1,7 @@
 import terser from "@rollup/plugin-terser";
 import {
   globals,
+  hooksConfig,
   serverConfig,
   browserConfig,
   standaloneBaseConfig,
@@ -50,10 +51,10 @@ export default [
   standaloneProdConfig,
   serverConfig,
   browserConfig,
+  hooksConfig,
   {
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts.default()],
   },
-  // hooksConfig,
 ];

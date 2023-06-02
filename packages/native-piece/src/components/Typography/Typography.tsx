@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { TypographyProps, ColorProps } from 'styled-system';
+import React from "react";
+import { TypographyProps, FlexboxProps, ColorProps } from "styled-system";
 
-import { KeyofJSXTypography } from '../../types';
+import { KeyofJSXTypography } from "../../types";
 import CreateStyled from "../../core/createStyled";
-import { reactPropsTypes } from '../../utils/flatten';
-import { IBaseStyled, ICSSMEDIAProperty } from '../../interfaces';
+import { reactPropsTypes } from "../../utils/flatten";
+import { IBaseStyled, ICSSMEDIAProperty } from "../../interfaces";
 
 export interface ITypographyProps extends
   ColorProps,
   IBaseStyled,
+  FlexboxProps,
   TypographyProps,
   ICSSMEDIAProperty<ITypographyProps> {
   /**
@@ -33,7 +34,7 @@ export interface ITypographyProps extends
   as?: KeyofJSXTypography;
 }
 
-const Typography = React.forwardRef<HTMLSpanElement, ITypographyProps>((inProps, ref) => {
+const Typography = React.forwardRef<HTMLParagraphElement, ITypographyProps>((inProps, ref) => {
   const TypographyRoot = CreateStyled<ITypographyProps, 'p'>('p', inProps);
   return <TypographyRoot ref={ref} {...reactPropsTypes(inProps)} />;
 });

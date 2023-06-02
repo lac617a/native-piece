@@ -7,10 +7,7 @@ import { reactPropsTypes } from "../../utils/flatten";
 
 export interface IGridProps extends
   Omit<
-    PropsType<
-      HTMLDivElement,
-      GridProps
-    >,
+    PropsType & GridProps,
     | "as"
     | "display"
     | "flex"
@@ -28,12 +25,18 @@ export interface IGridProps extends
     | "msFlexShrink"
     | "msFlexDirection"
   > {
-  children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 
 const Grid = React.forwardRef<HTMLDivElement, IGridProps>((inProps, ref) => {
   const GridRoot = CreateStyled<IGridProps>('div', inProps);
-  return <GridRoot ref={ref} display="grid" {...reactPropsTypes(inProps)} />
+
+  return (
+    <GridRoot
+      ref={ref}
+      display="grid"
+      { ...reactPropsTypes(inProps) }
+    />
+  )
 });
 
 export default Grid;

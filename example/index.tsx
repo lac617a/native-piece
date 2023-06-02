@@ -5,11 +5,11 @@ import { Box, Grid, Stack, Button, VStack, Heading, Link, Typography } from "../
 const root = document.getElementById("root");
 
 ReactDOM.render(
-  <Box onClick={() => console.log("ASdas")}>
+  <Box>
     <Button
+      padding={30}
       onClick={(e) => console.log(e)}
-      cursor="pointer"
-      >Hola</Button>
+    >Hola</Button>
     <Typography
       color="red"
       fontSize={70}
@@ -18,7 +18,10 @@ ReactDOM.render(
       pseudos={{ ":hover": { color: 'blue' } }}>
       Typography-test
     </Typography>
-    <Grid gridGap={100} gridTemplateColumns="1fr 1fr" gridTemplateRows="repeat(2, 1fr)">
+    <Grid
+      gridGap={100}
+      gridTemplateColumns="1fr 1fr"
+      gridTemplateRows="repeat(2, 1fr)">
       <Box as="input" />
 
       <Box as="input" placeholder="hopla" gridColumn={2} />
@@ -52,7 +55,7 @@ ReactDOM.render(
           any device and screen size.
         </Typography>
       </VStack>
-      <VStack gap="8px">
+      <VStack gap={8}>
         <Typography className="text text-h5">
           Coding
         </Typography>
@@ -82,6 +85,7 @@ ReactDOM.render(
         fontSize={20}
         transition="300ms"
         fontFamily="Serif"
+        flexWrap="wrap"
         backgroundColor="crimson"
         mediaLg={{
           backgroundColor: "tomato",
@@ -106,6 +110,7 @@ ReactDOM.render(
         backgroundColor="blue"
         justifyContent="center"
         backgroundImage="url(https://i.ibb.co/yg9ptQy/logo-native-piece.png)">
+        <Heading>VStack</Heading>
         <Heading>justifyContent=center</Heading>
         <Heading>justifyContent=center</Heading>
         <Heading>justifyContent=center</Heading>
@@ -114,7 +119,6 @@ ReactDOM.render(
       <Stack justifyContent="flex-end" backgroundColor="red">
         <Heading>justifyContent=flex-end</Heading>
       </Stack>
-
     </Box>
   </Box>,
   root as HTMLElement

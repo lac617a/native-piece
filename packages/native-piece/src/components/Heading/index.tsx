@@ -1,12 +1,14 @@
 import React from "react";
-import { ColorProps, TypographyProps } from "styled-system";
+import { ColorProps, FlexboxProps, TypographyProps } from "styled-system";
 
 import CreateStyled from "../../core/createStyled";
 import { reactPropsTypes } from "../../utils/flatten";
 import { IBaseStyled, ICSSMEDIAProperty } from "../../interfaces";
 
-export interface IHeadingProps extends ColorProps,
+export interface IHeadingProps extends
+  ColorProps,
   IBaseStyled,
+  FlexboxProps,
   TypographyProps,
   ICSSMEDIAProperty<IHeadingProps> {
   /**

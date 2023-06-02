@@ -1,13 +1,10 @@
 import * as CSS from "csstype";
-import { DetailedHTMLProps } from "react";
-import { ICSSProperty } from "./interfaces";
 import { CSSObject } from "@emotion/styled";
+import { ICSSProperty } from "./interfaces";
 
-export type PropsType<HTML extends HTMLElement = HTMLElement, P = object> = {
-  children?: React.ReactNode | JSX.Element | JSX.Element[];
-} & ICSSProperty &
-  P &
-  DetailedHTMLProps<React.AllHTMLAttributes<HTML>, HTML>;
+export type PropsType<HTML extends keyof JSX.IntrinsicElements = "div"> = {
+  as?: KeyofJSXType;
+} & ICSSProperty & JSX.IntrinsicElements[HTML]
 
 export type Dict<T> = { [key: string]: T };
 export type DOMProps = React.DOMAttributes<HTMLElement>;
@@ -32,30 +29,20 @@ export type KeyofJSXTypography = keyof Pick<
 
 export type KeyofJSXType = keyof Pick<
   JSX.IntrinsicElements,
-  | "a"
   | "article"
   | "aside"
-  | "button"
-  | "div"
   | "footer"
   | "figcaption"
   | "figure"
   | "form"
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
   | "header"
-  | "img"
   | "input"
   | "label"
   | "li"
-  | "link"
   | "main"
   | "nav"
   | "ol"
   | "textarea"
   | "section"
   | "ul"
-> & KeyofJSXTypography;
+>;

@@ -3,7 +3,6 @@ import {
   getESM,
   getCJS,
   SRC_DIR,
-  PKG_DIR,
   tsconfig,
   DIST_DIR,
   EXTENSIONS,
@@ -59,7 +58,7 @@ export const commonPlugins = [
     babelHelpers: "runtime", // runtime-bundled
     exclude: /node_modules/,
     extensions: EXTENSIONS,
-    // include: EXTENSIONS.map((ext) => `packages/native-piece/src/**/*${ext}`),
+    include: EXTENSIONS.map((ext) => `${SRC_DIR}/**/*${ext}`),
     presets: [
       "@babel/preset-env",
       "@babel/preset-react",
@@ -144,7 +143,7 @@ export const browserConfig = {
 
 export const hooksConfig = {
   ...configBase,
-  input: PKG_DIR + "/hooks/index.ts",
+  input: SRC_DIR + "/hooks/index.ts",
   output: [
     getESM({ file: "hooks/dist/native-piece.hooks.esm.js" }),
     getCJS({ file: "hooks/dist/native-piece.hooks.cjs.js" }),
