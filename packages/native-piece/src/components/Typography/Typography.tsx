@@ -1,16 +1,12 @@
 import React from "react";
-import { TypographyProps, FlexboxProps, ColorProps } from "styled-system";
-
-import { KeyofJSXTypography } from "../../types";
 import CreateStyled from "../../core/createStyled";
 import { reactPropsTypes } from "../../utils/flatten";
 import { IBaseStyled, ICSSMEDIAProperty } from "../../interfaces";
+import { KeyofJSXTypography, TypographyStyleOnly } from "../../types";
 
 export interface ITypographyProps extends
-  ColorProps,
   IBaseStyled,
-  FlexboxProps,
-  TypographyProps,
+  TypographyStyleOnly,
   ICSSMEDIAProperty<ITypographyProps> {
   /**
    * The component maps the as prop to a range of different HTML element types.
