@@ -25,6 +25,7 @@
     "css-in-js",
     "native-piece",
     "emotion/react",
+    "emotion/style",
     "native-piece-hooks"
   ],
   "scripts": {
@@ -68,7 +69,6 @@
     "@emotion/react": ">= 11.10.6",
     "@emotion/styled": ">= 11.10.6",
     "@styled-system/should-forward-prop": ">= 5.1.5",
-    "native-piece-hooks": "^0.0.3",
     "styled-system": ">= 5.1.5"
   },
   "peerDependencies": {
@@ -76,7 +76,6 @@
     "@emotion/react": ">= 11.10.6",
     "@emotion/styled": ">= 11.10.6",
     "@styled-system/should-forward-prop": ">= 5.1.5",
-    "native-piece-hooks": ">= 0.0.3",
     "react": ">= 16.8.0",
     "react-dom": ">= 16.8.0",
     "styled-system": ">= 5.1.5",
