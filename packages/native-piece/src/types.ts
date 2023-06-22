@@ -35,6 +35,7 @@ export type TypographyStyleOnly = Pick<
   | "marginBottom"
   | "marginLeft"
   | "lineHeight"
+  | "overflow"
   | "padding"
   | "paddingBlock"
   | "paddingInline"
