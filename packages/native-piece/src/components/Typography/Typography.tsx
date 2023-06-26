@@ -1,13 +1,9 @@
 import React from "react";
 import CreateStyled from "../../core/createStyled";
 import { reactPropsTypes } from "../../utils/flatten";
-import { IBaseStyled, ICSSMEDIAProperty } from "../../interfaces";
 import { KeyofJSXTypography, TypographyStyleOnly } from "../../types";
 
-export interface ITypographyProps extends
-  IBaseStyled,
-  TypographyStyleOnly,
-  ICSSMEDIAProperty<ITypographyProps> {
+export interface ITypographyProps extends TypographyStyleOnly {
   /**
    * The component maps the as prop to a range of different HTML element types.
    * For instance, span to `<span>`.

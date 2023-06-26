@@ -10,7 +10,6 @@ const buttonStyled: IButtonProps = {
   overflow: "hidden",
   outline: "none",
   border: "none",
-  padding: "10px",
   position: "relative",
 }
 
@@ -20,7 +19,6 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>((inProps, ref) 
     inProps,
     buttonStyled
   );
-
 
   return (
     <ButtonRoot

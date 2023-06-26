@@ -2,11 +2,7 @@ import React from "react";
 import { TypographyStyleOnly } from "../../types";
 import CreateStyled from "../../core/createStyled";
 import { reactPropsTypes } from "../../utils/flatten";
-import { IBaseStyled, ICSSMEDIAProperty } from "../../interfaces";
-export interface IHeadingProps extends
-  IBaseStyled,
-  TypographyStyleOnly,
-  ICSSMEDIAProperty<IHeadingProps> {
+export interface IHeadingProps extends TypographyStyleOnly {
   /**
    * The component maps the as prop to a range of different HTML element types.
    * For instance, h2 to `<h2>`.
