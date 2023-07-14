@@ -8,13 +8,16 @@ import {
   EXTENSIONS,
   EXAMPLE_DIR,
 } from "./globalsConfig.js";
+import json from 'rollup-plugin-json';
 import babel from "@rollup/plugin-babel";
+import terser from "@rollup/plugin-terser";
+import postcss from "rollup-plugin-postcss";
 import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
+import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-
 import pkg from "../package.json" assert { type: "json" };
 
 export const input = path.join(SRC_DIR, "index.ts");
@@ -25,7 +28,8 @@ export const globals = {
   "react-dom": "ReactDOM",
   "@emotion/styled": "styled",
   "styled-system": "styledSystem",
-  "@styled-system/should-forward-prop": "shouldForwardProp$1",
+  "@emotion/styled/base": "_styled",
+  "@styled-system/should-forward-prop": "shouldForwardProp$1"
 };
 
 // Array of extensions to be handled by babel
@@ -35,21 +39,26 @@ export const output = {
   format: "umd",
   globals,
   sourcemap: true,
+  name: "nativePiece",
 };
 
 export const commonPlugins = [
+  peerDepsExternal(),
+  json(),
+  postcss(),
+  sourceMaps(),
   typescript({
     // The build breaks if the tests are included by the typescript plugin.
     // Since un-excluding them in tsconfig.json, we must explicitly exclude them
     // here.
-    exclude: ["**/*.test.ts", "**/*.test.tsx", "dist"],
-    outputToFilesystem: true,
     tsconfig,
+    jsx: "preserve",
+    outputToFilesystem: true,
+    exclude: ["**/*.test.ts", "**/*.test.tsx", "dist"]
   }),
   nodeResolve({
     browser: true,
   }),
-  peerDepsExternal(),
   commonjs({
     esmExternals: false,
     ignoreGlobal: true,
@@ -64,7 +73,7 @@ export const commonPlugins = [
       "@babel/preset-react",
       "@babel/preset-typescript",
     ],
-    plugins: ["@babel/plugin-transform-runtime"],
+    plugins: ["@emotion","@babel/plugin-transform-runtime"],
   }),
   replace({
     preventAssignment: true,
@@ -96,8 +105,26 @@ export const commonPlugins = [
 
 const configBase = {
   input,
+  // \0 is rollup convention for generated in memory modules
+  // external: (id) =>
+  //   !id.startsWith("\0") && !id.startsWith(".") && !id.startsWith("/"),
   plugins: commonPlugins,
 };
+
+export const minifierPlugin = terser({
+  compress: {
+    passes: 10,
+    keep_infinity: true,
+    pure_getters: true,
+  },
+  ecma: 5,
+  format: {
+    wrap_func_args: false,
+    comments: /^\s*([@#]__[A-Z]+__\s*$|@cc_on)/,
+    preserve_annotations: true,
+  },
+});
+
 
 export const standaloneBaseConfig = {
   ...configBase,
@@ -106,7 +133,8 @@ export const standaloneBaseConfig = {
     replace({
       __SERVER__: JSON.stringify(false),
       preventAssignment: true,
-    })
+    }),
+    minifierPlugin
   ),
   treeshake: {
     propertyReadSideEffects: false,
@@ -124,7 +152,8 @@ export const serverConfig = {
       window: undefined,
       preventAssignment: true,
       __SERVER__: JSON.stringify(true),
-    })
+    }),
+    minifierPlugin
   ),
 };
 
@@ -132,26 +161,28 @@ export const browserConfig = {
   ...configBase,
   output: [
     getCJS({ file: "dist/cjs/native-piece.browser.cjs.js" }),
+    getESM({ file: "dist/esm/native-piece.browser.esm.js" }),
   ],
   plugins: configBase.plugins.concat(
     replace({
       preventAssignment: true,
       __SERVER__: JSON.stringify(false),
-    })
+    }),
+    minifierPlugin
   ),
 };
 
-export const hooksConfig = {
-  ...configBase,
-  input: SRC_DIR + "/hooks/index.ts",
-  output: [
-    getESM({ file: "hooks/dist/native-piece.hooks.esm.js" }),
-    getCJS({ file: "hooks/dist/native-piece.hooks.cjs.js" }),
-  ],
-  plugins: configBase.plugins.concat(
-    replace({
-      preventAssignment: true,
-      __SERVER__: JSON.stringify(false),
-    })
-  ),
-};
+// export const hooksConfig = {
+//   ...configBase,
+//   input: SRC_DIR + "/hooks/index.ts",
+//   output: [
+//     getESM({ file: "hooks/dist/native-piece.hooks.esm.js" }),
+//     getCJS({ file: "hooks/dist/native-piece.hooks.cjs.js" }),
+//   ],
+//   plugins: configBase.plugins.concat(
+//     replace({
+//       preventAssignment: true,
+//       __SERVER__: JSON.stringify(false),
+//     })
+//   ),
+// };
