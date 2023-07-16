@@ -1,15 +1,14 @@
-import React from "react";
+import emStyled from "@emotion/styled";
 import { PropsType } from "../../types";
-import CreateStyled from "../../core/createStyled";
-import { reactPropsTypes } from "../../utils/flatten";
+import { config, shouldForwardProp } from "../../core/config";
 
 export interface ILinkProps extends Omit<PropsType<"a">, "as"> {
   as?: "a" | "link";
 }
 
-const Link = React.forwardRef<HTMLAnchorElement, ILinkProps>((inProps, ref) => {
-  const LinkRoot = CreateStyled<ILinkProps, 'a'>('a', inProps);
-  return <LinkRoot ref={ref} {...reactPropsTypes(inProps)} />;
-});
+const Link = emStyled<"a">("a", {
+  label: "native-piece",
+  shouldForwardProp
+})<ILinkProps>`${config}`;
 
 export default Link;

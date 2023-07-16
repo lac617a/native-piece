@@ -1,31 +1,17 @@
-import React from "react";
-import { PropsType } from "../../types";
-import CreateStyled from "../../core/createStyled";
-import { reactPropsTypes } from "../../utils/flatten";
+import emStyled, { StyledComponent } from "@emotion/styled";
+import { ICSSProperty } from "../../interfaces";
+import { config, shouldForwardProp } from "../../core/config";
 
-export interface IButtonProps extends PropsType<"button"> {}
+const Button = emStyled<"button">("button", {
+  label: "native-piece",
+  shouldForwardProp
+})<ICSSProperty>`
+  cursor: pointer;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  ${config}
+`;
 
-const buttonStyled: IButtonProps = {
-  cursor: "pointer",
-  overflow: "hidden",
-  outline: "none",
-  border: "none",
-  position: "relative",
-}
-
-const Button = React.forwardRef<HTMLButtonElement, IButtonProps>((inProps, ref) => {
-  const ButtonRoot = CreateStyled<IButtonProps, 'button'>(
-    'button',
-    inProps,
-    buttonStyled
-  );
-
-  return (
-    <ButtonRoot
-      ref={ref}
-      {...reactPropsTypes(inProps)}
-    />
-  );
-});
-
-export default Button;
+export default Button as StyledComponent<{} & ICSSProperty, React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, {}>;

@@ -4,6 +4,6 @@ import { PropsType } from "../../../types";
 
 export interface IStackProps extends PropsType {}
 
-const Stack = React.forwardRef<HTMLDivElement, IStackProps>((inProps, ref) => <Box ref={ref as any} display="flex" {...inProps} />);
+const Stack = React.forwardRef<HTMLDivElement, IStackProps>((inProps, ref) => <Box ref={ref as any} aria-label="NP-Stack" display="flex" {...inProps} />);
 
 export default Stack;

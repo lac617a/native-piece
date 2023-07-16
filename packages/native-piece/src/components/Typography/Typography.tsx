@@ -1,7 +1,6 @@
-import React from "react";
-import CreateStyled from "../../core/createStyled";
-import { reactPropsTypes } from "../../utils/flatten";
+import emStyled from "@emotion/styled";
 import { KeyofJSXTypography, TypographyStyleOnly } from "../../types";
+import { config, shouldForwardProp } from "../../core/config";
 
 export interface ITypographyProps extends TypographyStyleOnly {
   /**
@@ -26,9 +25,9 @@ export interface ITypographyProps extends TypographyStyleOnly {
   as?: KeyofJSXTypography;
 }
 
-const Typography = React.forwardRef<HTMLParagraphElement, ITypographyProps>((inProps, ref) => {
-  const TypographyRoot = CreateStyled<ITypographyProps, 'p'>('p', inProps);
-  return <TypographyRoot ref={ref} {...reactPropsTypes(inProps)} />;
-});
+const Typography = emStyled<"p">("p", {
+  label: "native-piece",
+  shouldForwardProp
+})<ITypographyProps>`${config}`;
 
 export default Typography;

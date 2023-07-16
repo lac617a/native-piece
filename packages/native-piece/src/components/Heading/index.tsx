@@ -1,7 +1,6 @@
-import React from "react";
+import emStyled from "@emotion/styled";
 import { TypographyStyleOnly } from "../../types";
-import CreateStyled from "../../core/createStyled";
-import { reactPropsTypes } from "../../utils/flatten";
+import { config, shouldForwardProp } from "../../core/config";
 export interface IHeadingProps extends TypographyStyleOnly {
   /**
    * The component maps the as prop to a range of different HTML element types.
@@ -19,9 +18,9 @@ export interface IHeadingProps extends TypographyStyleOnly {
   as?: "h1" | "h2" | "h3" | "h4" | "h5"
 }
 
-const Heading = React.forwardRef<HTMLHeadingElement, IHeadingProps>((inProps, ref) => {
-  const HeadingRoot = CreateStyled<IHeadingProps, 'h2'>('h2', inProps);
-  return <HeadingRoot ref={ref} {...reactPropsTypes(inProps)} />;
-});
+const Heading = emStyled<"h2">("h2", {
+  label: "native-piece",
+  shouldForwardProp
+})<IHeadingProps>`${config}`;
 
 export default Heading;

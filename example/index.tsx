@@ -1,22 +1,15 @@
 import React, {
-  FC,
   memo,
   useRef,
   useState,
-  ReactNode,
   useLayoutEffect
 } from "react";
 import ReactDOM from "react-dom";
-import { Box, Grid, Stack, Button, VStack, Heading, Link, Typography } from "../packages/native-piece/src";
+import { Box, Stack, Button, VStack, Heading, Link, Typography } from "../packages/native-piece/src";
 
 const root = document.getElementById("root");
-interface ICollapseProps {
-  in?: boolean;
-  button?: ReactNode;
-  children?: ReactNode;
-}
 
-const Collapse: FC<ICollapseProps> = memo(props => {
+const Collapse = memo((props: any) => {
   const nodeRef = useRef<HTMLDivElement>(null);
   const [childHeight, setChildHeight] = useState<string>("0rem");
 
@@ -30,13 +23,18 @@ const Collapse: FC<ICollapseProps> = memo(props => {
     <Box
       display="block"
       width="100%"
-      overflowY="auto"
       overflowX="hidden"
       height={childHeight}
-      willChange="max-height"
-      transition="ease 0.4s max-height"
-      maxHeight={props.in ? childHeight : 0}>
-      <Box ref={nodeRef} overflowY="auto" overflowX="hidden" width="100%">
+      willChange="min-height"
+      transition="ease 0.4s min-height"
+      minHeight={props.in ? childHeight : 0}
+      maxHeight={0}
+      overflowY={props.in ? "auto" : "hidden"}>
+      <Box
+        ref={nodeRef}
+        width="100%"
+        overflowX="hidden"
+        overflowY={props.in ? "auto" : "hidden"}>
         {props.children}
       </Box>
     </Box>
@@ -45,33 +43,25 @@ const Collapse: FC<ICollapseProps> = memo(props => {
 
 const App = () => {
   const [show, setShow] = useState(false);
+  const [text, setText] = useState("");
   return (
     <Box>
       <Button
         padding={30}
-        onClick={(e) => setShow(prev => !prev)}
+        onClick={() => setShow(prev => !prev)}
       >Hola</Button>
       <Collapse in={show}>
         <Typography
           color="red"
           fontSize={70}
+          transition="1000ms"
           fontFamily="fantasy"
           mediaMd={{ color: 'yellow' }}
           pseudos={{ ":hover": { color: 'blue' } }}>
           Typography-test
         </Typography>
       </Collapse>
-      <Grid
-        gridGap={100}
-        gridTemplateColumns="1fr 1fr"
-        gridTemplateRows="repeat(2, 1fr)">
-        <Box as="input" />
-
-        <Box as="input" placeholder="hopla" gridColumn={2} />
-
-        <Box as="input" />
-
-      </Grid>
+      <Box as="input" onChange={(e: any) => setText(e.target.value)} />
       <Box
         display="grid"
         gap="2rem"
@@ -80,7 +70,7 @@ const App = () => {
         gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))">
         <VStack gap="8px">
           <Typography className="text text-h5">
-            Coding
+            {text || "Coding"}
           </Typography>
           <Typography className="text text-grey">
             Building responsive websites with a “Mobile First” approach.
@@ -130,7 +120,7 @@ const App = () => {
           fontFamily="Serif"
           flexWrap="wrap"
           backgroundColor="crimson"
-          mediaLg={{
+          mediaMd={{
             backgroundColor: "tomato",
             color: "yellow",
             margin: "20px",
@@ -169,5 +159,5 @@ const App = () => {
 
 ReactDOM.render(
   <App />,
-  root as HTMLElement
+  root
 );

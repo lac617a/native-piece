@@ -1,13 +1,12 @@
-import React from "react";
-import { PropsType } from "../../../types";
-import CreateStyled from "../../../core/createStyled";
-import { reactPropsTypes } from "../../../utils/flatten";
+import emStyled, { StyledComponent } from "@emotion/styled";
+import { PropsType, KeyofJSXType } from "../../../types";
+import { config, shouldForwardProp } from "../../../core/config";
 
-export interface IBoxProps extends PropsType {}
+const Box = emStyled<"div">("div", {
+  label: "native-piece",
+  shouldForwardProp
+})<PropsType<"div">>`${config}`;
 
-const Box = React.forwardRef<HTMLDivElement, IBoxProps>((inProps, ref) => {
-  const BoxRoot = CreateStyled<IBoxProps>('div', inProps);
-  return <BoxRoot ref={ref} {...reactPropsTypes(inProps)} />;
-});
-
-export default Box;
+export default Box as StyledComponent<{
+  as?: KeyofJSXType;
+} & PropsType<"div">, React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>;

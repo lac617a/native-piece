@@ -7,16 +7,21 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "tsBuildInfoFile": "local.tsbuildinfo",
+    "incremental": true /* Enable incremental compilation */,
+    "downlevelIteration": false /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */,
+    "importHelpers": true, /* Import emit helpers from 'tslib'. */
 
     // Added
-    "jsx": "react",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "outDir": "dist",
     "sourceMap": true,
     "module": "ESNext",  
     "declaration": true,
     "declarationDir": "types",
     "moduleResolution": "node",
-    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
 
     // Extra
@@ -32,16 +37,11 @@
     "noImplicitOverride": true,
     "strictFunctionTypes": true,
     "useUnknownInCatchVariables": true,
-    // "isolatedModules": true,
-    // "downlevelIteration": true,
   },
   "exclude": [
     "node_modules",
-    "**/*/hooks",
+    "rollup.cache",
     "**/*/dist",
-    "**/*/core",
     "**/*/hooks",
-    "**/*/utils",
-    "**/*/components",
   ]
 }

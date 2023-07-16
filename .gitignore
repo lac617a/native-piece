@@ -14,7 +14,6 @@ dist
 *.txt
 sandbox/node_modules
 
-example2
 index.dev.html
 
 *.log
@@ -26,3 +25,4 @@ update-dynamic-styles-trace.json
 .build
 .dist
 .next
+*.tsbuildinfo

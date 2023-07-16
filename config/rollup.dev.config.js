@@ -32,6 +32,7 @@ devPlugins.push(
 
 devPlugins.push(
   html({
+    title: "native-piece",
     template: ({ files }) => htmlTemplate(files.js),
   })
 );

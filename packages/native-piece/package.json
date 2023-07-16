@@ -1,6 +1,6 @@
 {
   "name": "native-piece",
-  "version": "1.0.23",
+  "version": "2.0.0",
   "license": "MIT",
   "author": "Dominyel Rivera - Yoydev",
   "description": "React primitive UI components. Use the best bits of ES6 and CSS to style your apps without stress",
@@ -16,17 +16,16 @@
     "README.md",
     "dist"
   ],
+  "sideEffects": false,
   "keywords": [
     "css",
     "react",
     "styled",
     "styles",
     "styling",
-    "emotion",
     "css-in-js",
     "native-piece",
-    "emotion/react",
-    "emotion/style",
+    "styled-components",
     "native-piece-hooks"
   ],
   "scripts": {
@@ -34,6 +33,8 @@
     "prepublish": "yarn build",
     "dev": "rimraf dist && yarn dev:rollup",
     "build": "rimraf dist && yarn build:rollup",
+    "postbuild": "yarn size",
+    "size": "bundlewatch",
     "build:rollup": "rollup --config ../../config/rollup.prod.config.js --bundleConfigAsCjs",
     "dev:rollup": "rollup --config ../../config/rollup.dev.config.js --bundleConfigAsCjs -w"
   },
@@ -52,12 +53,14 @@
     "@rollup/plugin-replace": "5.0.2",
     "@rollup/plugin-terser": "0.4.0",
     "@rollup/plugin-typescript": "11.0.0",
+    "@styled-system/should-forward-prop": "^5.1.5",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@types/rollup-plugin-peer-deps-external": "2.2.1",
     "@types/styled-system": "5.1.16",
     "@types/styled-system__should-forward-prop": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "5.52.0",
+    "bundlewatch": "0.3.3",
     "eslint-plugin-react": "7.32.2",
     "rimraf": "4.1.2",
     "rollup": "3.15.0",
@@ -70,22 +73,29 @@
     "rollup-plugin-sourcemaps": "^0.6.3"
   },
   "dependencies": {
-    "@emotion/css": "^11.11.0",
-    "@emotion/react": ">= 11.10.6",
-    "@emotion/styled": ">= 11.10.6",
-    "@styled-system/should-forward-prop": ">= 5.1.5",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "styled-system": ">= 5.1.5"
   },
   "peerDependencies": {
-    "@emotion/css": ">= 11.11.0",
-    "@emotion/react": ">= 11.10.6",
-    "@emotion/styled": ">= 11.10.6",
-    "@emotion/babel-plugin": ">= 11.11.0",
-    "@styled-system/should-forward-prop": ">= 5.1.5",
+    "@emotion/react": ">= 11.11.1",
+    "@emotion/styled": ">= 11.11.0",
     "react": ">= 16.8.0",
     "react-dom": ">= 16.8.0",
     "styled-system": ">= 5.1.5",
     "tslib": "2.0.0"
+  },
+  "resolutions": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0"
+  },
+  "bundlewatch": {
+    "files": [
+      {
+        "path": "./dist/native-piece.min.js",
+        "maxSize": "11.5kB"
+      }
+    ]
   },
   "homepage": "https://native-piece.com",
   "bugs": {

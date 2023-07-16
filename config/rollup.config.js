@@ -8,13 +8,13 @@ import {
   EXTENSIONS,
   EXAMPLE_DIR,
 } from "./globalsConfig.js";
-import json from 'rollup-plugin-json';
+import json from "rollup-plugin-json";
 import babel from "@rollup/plugin-babel";
 import terser from "@rollup/plugin-terser";
 import postcss from "rollup-plugin-postcss";
 import replace from "@rollup/plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
-import sourceMaps from 'rollup-plugin-sourcemaps';
+import sourceMaps from "rollup-plugin-sourcemaps";
 import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
@@ -29,17 +29,16 @@ export const globals = {
   "@emotion/styled": "styled",
   "styled-system": "styledSystem",
   "@emotion/styled/base": "_styled",
-  "@styled-system/should-forward-prop": "shouldForwardProp$1"
 };
 
 // Array of extensions to be handled by babel
-
+const isProd = process.env.NODE_ENV === 'production';
 export const output = {
   file: path.join(DIST_DIR, "native-piece.js"),
   format: "umd",
   globals,
   sourcemap: true,
-  name: "nativePiece",
+  name: "native-piece",
 };
 
 export const commonPlugins = [
@@ -52,9 +51,8 @@ export const commonPlugins = [
     // Since un-excluding them in tsconfig.json, we must explicitly exclude them
     // here.
     tsconfig,
-    jsx: "preserve",
     outputToFilesystem: true,
-    exclude: ["**/*.test.ts", "**/*.test.tsx", "dist"]
+    exclude: ["**/*.test.ts", "**/*.test.tsx", "dist"],
   }),
   nodeResolve({
     browser: true,
@@ -69,11 +67,21 @@ export const commonPlugins = [
     extensions: EXTENSIONS,
     include: EXTENSIONS.map((ext) => `${SRC_DIR}/**/*${ext}`),
     presets: [
-      "@babel/preset-env",
-      "@babel/preset-react",
+      '@babel/preset-env',
+      '@babel/preset-react',
       "@babel/preset-typescript",
     ],
-    plugins: ["@emotion","@babel/plugin-transform-runtime"],
+    plugins: [
+      "@babel/plugin-transform-runtime",
+      [
+        '@emotion',
+        {
+          sourceMap: isProd,
+          autoLabel: 'dev-only',
+          labelFormat: '[filename]--[local]',
+        },
+      ],
+    ].filter(Boolean),
   }),
   replace({
     preventAssignment: true,
@@ -124,7 +132,6 @@ export const minifierPlugin = terser({
     preserve_annotations: true,
   },
 });
-
 
 export const standaloneBaseConfig = {
   ...configBase,

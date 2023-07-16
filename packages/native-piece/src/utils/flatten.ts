@@ -74,5 +74,4 @@ const getProps = (test: (string: string) => boolean) => (props: {}) => {
 const getSystemStyledProps = getProps((regexp: string) => PRE.test(regexp));
 export const reactPropsTypes = getProps((regexp: string) => !PRE.test(regexp));
 
-export const systemStyledTypes = (props: ICSSProperty): string =>
-  objToCssArray({ ...getSystemStyledProps(props) }).join("\n");
+export const systemStyledTypes = (props: ICSSProperty): string => objToCssArray({ ...getSystemStyledProps(props) }).join("\n");
