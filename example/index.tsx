@@ -48,7 +48,17 @@ const App = () => {
     <Box>
       <Button
         padding={30}
+        transition="300ms"
         onClick={() => setShow(prev => !prev)}
+        pseudos={{
+          ":hover": {
+            backgroundColor: "#1d3557",
+            transform: "scale(1.02)"
+          },
+          ":focus": {
+            color: "red"
+          }
+        }}
       >Hola</Button>
       <Collapse in={show}>
         <Typography

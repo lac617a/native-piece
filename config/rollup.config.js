@@ -28,7 +28,6 @@ export const globals = {
   "react-dom": "ReactDOM",
   "@emotion/styled": "styled",
   "styled-system": "styledSystem",
-  "@emotion/styled/base": "_styled",
 };
 
 // Array of extensions to be handled by babel
