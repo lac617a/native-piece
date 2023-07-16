@@ -1,9 +1,12 @@
-import React from "react";
-import Box from "../Box";
-import { PropsType } from "../../../types";
+import emStyled, { StyledComponent } from "@emotion/styled";
+import { config, options } from "../../../core/config";
+import { ICSSProperty } from "../../../interfaces";
 
-export interface IStackProps extends PropsType {}
+const Stack = emStyled<"div">("div", options)<ICSSProperty>`
+  display: flex;
+  ${config}
+`;
 
-const Stack = React.forwardRef<HTMLDivElement, IStackProps>((inProps, ref) => <Box ref={ref as any} aria-label="NP-Stack" display="flex" {...inProps} />);
-
-export default Stack;
+export default Stack as StyledComponent<{
+  as?: React.ElementType<any> | undefined;
+} & ICSSProperty, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>;

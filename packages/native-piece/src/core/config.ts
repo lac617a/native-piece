@@ -5,6 +5,7 @@ import {
 } from "@styled-system/should-forward-prop";
 import { objPseudoToCssArray, systemStyledTypes } from "../utils/flatten";
 
+const LABEL = "native-piece";
 const shouldForwardProp = createShouldForwardProp([
   ...shouldForwardPro,
   "gap",
@@ -13,6 +14,11 @@ const shouldForwardProp = createShouldForwardProp([
   "willChange",
   "textDecoration",
 ]);
+
+const options = {
+  label: LABEL,
+  shouldForwardProp,
+};
 
 const config = (props?: any) => `
   ${systemStyledTypes(props)}
@@ -35,4 +41,4 @@ const config = (props?: any) => `
   ${objPseudoToCssArray(props.pseudos)}
 `;
 
-export { config, shouldForwardProp };
+export { config, options };

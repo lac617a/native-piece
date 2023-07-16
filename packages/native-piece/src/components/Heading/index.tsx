@@ -1,6 +1,6 @@
 import emStyled, { StyledComponent } from "@emotion/styled";
 import { TypographyStyleOnly } from "../../types";
-import { config, shouldForwardProp } from "../../core/config";
+import { config, options } from "../../core/config";
 export interface IHeadingProps extends TypographyStyleOnly {
   /**
    * The component maps the as prop to a range of different HTML element types.
@@ -18,10 +18,7 @@ export interface IHeadingProps extends TypographyStyleOnly {
   as?: "h1" | "h2" | "h3" | "h4" | "h5"
 }
 
-const Heading = emStyled<"h2">("h2", {
-  label: "native-piece",
-  shouldForwardProp
-})<IHeadingProps>`${config}`;
+const Heading = emStyled<"h2">("h2", options)<IHeadingProps>`${config}`;
 
 export default Heading as StyledComponent<{
   as?: React.ElementType<any> | undefined;

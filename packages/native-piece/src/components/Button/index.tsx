@@ -1,11 +1,8 @@
 import emStyled, { StyledComponent } from "@emotion/styled";
 import { ICSSProperty } from "../../interfaces";
-import { config, shouldForwardProp } from "../../core/config";
+import { config, options } from "../../core/config";
 
-const Button = emStyled<"button">("button", {
-  label: "native-piece",
-  shouldForwardProp
-})<ICSSProperty>`
+const Button = emStyled<"button">("button", options)<ICSSProperty>`
   cursor: pointer;
   border: none;
   outline: none;

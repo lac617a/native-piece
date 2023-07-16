@@ -1,9 +1,13 @@
-import React from "react";
-import Stack, { IStackProps } from "./Stack";
+import emStyled, { StyledComponent } from "@emotion/styled";
+import { config, options } from "../../../core/config";
+import { ICSSProperty } from "../../../interfaces";
 
-export interface IVStackProps extends IStackProps { }
+const VStack = emStyled<"div">("div", options)<ICSSProperty>`
+  display: flex;
+  flex-direction: column;
+  ${config}
+`;
 
-const VStack = React.forwardRef<HTMLDivElement, IVStackProps>((inProps, ref) => 
-  <Stack ref={ref as any} aria-label="NP-VStack" flexDirection="column" {...inProps} />);
-
-export default VStack;
+export default VStack as StyledComponent<{
+  as?: React.ElementType<any> | undefined;
+} & ICSSProperty, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>;
