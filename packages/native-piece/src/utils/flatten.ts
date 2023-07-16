@@ -9,13 +9,8 @@ import {
   findTypeMediaQuery,
 } from "./reponsive";
 import { ICSSProperty } from "../interfaces";
-
-const propertyInclude = (property: string): boolean => {
-  const PROPERTY = ALLPROPERTY.some(
-    (value) => humanize(value) === humanize(property)
-  );
-  return PROPERTY;
-};
+import isPlainObject from "./isPlainObject";
+import isFunction from "./isFunction";
 
 const nativeProps: string[] = [
   "gap",
@@ -49,18 +44,37 @@ const objToCssArray = (obj: Dict<any>): string[] => {
 
     if (!obj.hasOwnProperty(key) || isFalsish(val)) continue;
 
-    if (propertyInclude(key)) {
-      rules.push(`${hyphenate(key)}: ${addUnitIfNeeded(key, val)};`);
+    if (Array.isArray(val) || isFunction(val)) {
+      rules.push(`${hyphenate(key)}:`, val, ";");
     } else if (key.startsWith("media")) {
       const { mediaOnly, exactMedia } = findTypeMediaQuery(key);
       const mediaQuery = getMediaExact(mediaOnly)[exactMedia];
       rules.push(
         `@media only screen and ${mediaQuery} {${objToCssArray(val).join(" ")}}`
       );
+    } else if (isPlainObject(val)) {
+      rules.push(`${key} {`, ...objToCssArray(val), "}");
+    } else {
+      rules.push(`${hyphenate(key)}: ${addUnitIfNeeded(key, val)};`);
     }
   }
   const newRules = new Set([...recordMediaQuery(rules), ...rules]);
   return [...newRules];
+};
+
+export const objPseudoToCssArray = (obj: Dict<any>): string | null => {
+  const rules: string[] = [];
+  if (isFalsish(obj)) return null;
+  for (const key in obj) {
+    const val = obj[key];
+    if (!obj.hasOwnProperty(key) || isFalsish(val)) continue;
+    if (isPlainObject(val)) {
+      rules.push(`&${key} { ${objToCssArray(val)} }`);
+    } else {
+      rules.push(`${hyphenate(key)}: ${addUnitIfNeeded(key, val)};`);
+    }
+  }
+  return rules.join(" ").replaceAll(",", " ");
 };
 
 const getProps = (test: (string: string) => boolean) => (props: {}) => {
@@ -74,4 +88,5 @@ const getProps = (test: (string: string) => boolean) => (props: {}) => {
 const getSystemStyledProps = getProps((regexp: string) => PRE.test(regexp));
 export const reactPropsTypes = getProps((regexp: string) => !PRE.test(regexp));
 
-export const systemStyledTypes = (props: ICSSProperty): string => objToCssArray({ ...getSystemStyledProps(props) }).join("\n");
+export const systemStyledTypes = (props: ICSSProperty): string =>
+  objToCssArray({ ...getSystemStyledProps(props) }).join("\n");

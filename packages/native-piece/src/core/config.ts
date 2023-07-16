@@ -1,12 +1,12 @@
 import * as styledSystem from "styled-system";
 import {
-  props,
   createShouldForwardProp,
+  props as shouldForwardPro,
 } from "@styled-system/should-forward-prop";
-import { systemStyledTypes } from "../utils/flatten";
+import { objPseudoToCssArray, systemStyledTypes } from "../utils/flatten";
 
 const shouldForwardProp = createShouldForwardProp([
-  ...props,
+  ...shouldForwardPro,
   "gap",
   "cursor",
   "transition",
@@ -14,8 +14,8 @@ const shouldForwardProp = createShouldForwardProp([
   "textDecoration",
 ]);
 
-const config = (props) => `
-  ${systemStyledTypes(props as any)}
+const config = (props?: any) => `
+  ${systemStyledTypes(props)}
   ${styledSystem.compose(
     styledSystem.grid,
     styledSystem.size,
@@ -32,10 +32,7 @@ const config = (props) => `
     styledSystem.buttonStyle,
     styledSystem.borderRadius
   )}
-  ${(props as any).pseudos}
+  ${objPseudoToCssArray(props.pseudos)}
 `;
 
-export {
-  config,
-  shouldForwardProp
-}
+export { config, shouldForwardProp };

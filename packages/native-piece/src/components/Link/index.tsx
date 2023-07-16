@@ -1,4 +1,4 @@
-import emStyled from "@emotion/styled";
+import emStyled, { StyledComponent } from "@emotion/styled";
 import { PropsType } from "../../types";
 import { config, shouldForwardProp } from "../../core/config";
 
@@ -11,4 +11,6 @@ const Link = emStyled<"a">("a", {
   shouldForwardProp
 })<ILinkProps>`${config}`;
 
-export default Link;
+export default Link as StyledComponent<{
+  as?: React.ElementType<any> | undefined;
+} & ILinkProps, React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, {}>;

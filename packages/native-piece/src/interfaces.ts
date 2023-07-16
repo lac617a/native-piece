@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
+import { CSSObject } from "@emotion/styled";
 import { ColorProps, SpaceProps } from "styled-system";
-import { CSSPseudos } from "./types";
 
 export enum size {
   sm = 480,
@@ -27,7 +27,7 @@ export interface ICSSMEDIAProperty<Styled = ICSSProperty> {
 
 export interface IBaseStyled {
   className?: string;
-  pseudos?: CSSPseudos;
+  pseudos?: CSSObject;
   children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 export interface IStyledNative

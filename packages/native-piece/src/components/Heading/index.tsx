@@ -1,4 +1,4 @@
-import emStyled from "@emotion/styled";
+import emStyled, { StyledComponent } from "@emotion/styled";
 import { TypographyStyleOnly } from "../../types";
 import { config, shouldForwardProp } from "../../core/config";
 export interface IHeadingProps extends TypographyStyleOnly {
@@ -23,4 +23,6 @@ const Heading = emStyled<"h2">("h2", {
   shouldForwardProp
 })<IHeadingProps>`${config}`;
 
-export default Heading;
+export default Heading as StyledComponent<{
+  as?: React.ElementType<any> | undefined;
+} & IHeadingProps, React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>, {}>;

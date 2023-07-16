@@ -1,4 +1,4 @@
-import emStyled from "@emotion/styled";
+import emStyled, { StyledComponent } from "@emotion/styled";
 import { KeyofJSXTypography, TypographyStyleOnly } from "../../types";
 import { config, shouldForwardProp } from "../../core/config";
 
@@ -30,4 +30,6 @@ const Typography = emStyled<"p">("p", {
   shouldForwardProp
 })<ITypographyProps>`${config}`;
 
-export default Typography;
+export default Typography as StyledComponent<{
+  as?: React.ElementType<any> | undefined;
+} & ITypographyProps, React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>, {}>;
