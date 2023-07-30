@@ -3,16 +3,11 @@ import {
   createShouldForwardProp,
   props as shouldForwardPro,
 } from "@styled-system/should-forward-prop";
-import { objPseudoToCssArray, systemStyledTypes } from "../utils/flatten";
+import { objSelectorsToCssArray, systemStyledTypes } from "../utils/flatten";
 
 const LABEL = "native-piece";
 const shouldForwardProp = createShouldForwardProp([
   ...shouldForwardPro,
-  "gap",
-  "cursor",
-  "transition",
-  "willChange",
-  "textDecoration",
 ]);
 
 const options = {
@@ -38,7 +33,8 @@ const config = (props?: any) => `
     styledSystem.buttonStyle,
     styledSystem.borderRadius
   )}
-  ${objPseudoToCssArray(props.pseudos)}
+  ${objSelectorsToCssArray(props.selectors)}
+  ${objSelectorsToCssArray(props.sx)}
 `;
 
 export { config, options };
