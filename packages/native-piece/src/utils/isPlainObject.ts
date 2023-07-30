@@ -12,3 +12,7 @@ export default function isPlainObject(x: any): boolean {
     !("props" in x && (x.$$typeof || x.constructor === undefined))
   );
 }
+
+export const isObjectEmpty = (objectName: Object) => {
+  return Object.keys(objectName).length === 0
+}
