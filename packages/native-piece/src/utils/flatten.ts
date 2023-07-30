@@ -8,13 +8,11 @@ import {
   recordMediaQuery,
   findTypeMediaQuery,
 } from "./reponsive";
-import { ICSSProperty } from "../interfaces";
-import isPlainObject from "./isPlainObject";
 import isFunction from "./isFunction";
+import { ICSSProperty } from "../interfaces";
+import isPlainObject, { isObjectEmpty } from "./isPlainObject";
 
 const nativeProps: string[] = [
-  "gap",
-  "cursor",
   "mediaSm",
   "mediaMd",
   "mediaLg",
@@ -39,6 +37,7 @@ const isFalsish = (chunk: any): chunk is undefined | null | false | "" =>
 
 const objToCssArray = (obj: Dict<any>): string[] => {
   const rules: string[] = [];
+  if (isObjectEmpty(obj)) return rules;
   for (const key in obj) {
     const val = obj[key];
 
@@ -62,14 +61,14 @@ const objToCssArray = (obj: Dict<any>): string[] => {
   return [...newRules];
 };
 
-export const objPseudoToCssArray = (obj: Dict<any>): string | null => {
+export const objSelectorsToCssArray = (obj: Dict<any>): string | null => {
   const rules: string[] = [];
   if (isFalsish(obj)) return null;
   for (const key in obj) {
     const val = obj[key];
     if (!obj.hasOwnProperty(key) || isFalsish(val)) continue;
     if (isPlainObject(val)) {
-      rules.push(`&${key} { ${objToCssArray(val)} }`);
+      rules.push(`${key} { ${objToCssArray(val)} }`);
     } else {
       rules.push(`${hyphenate(key)}: ${addUnitIfNeeded(key, val)};`);
     }
@@ -88,5 +87,5 @@ const getProps = (test: (string: string) => boolean) => (props: {}) => {
 const getSystemStyledProps = getProps((regexp: string) => PRE.test(regexp));
 export const reactPropsTypes = getProps((regexp: string) => !PRE.test(regexp));
 
-export const systemStyledTypes = (props: ICSSProperty): string =>
+export const systemStyledTypes = (props: ICSSProperty): string | null =>
   objToCssArray({ ...getSystemStyledProps(props) }).join("\n");
