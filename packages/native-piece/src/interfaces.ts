@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { CSSObject } from "@emotion/styled";
-import { ColorProps, SpaceProps } from "styled-system";
+import type { CSSOthersObject } from "@emotion/serialize";
 
 export enum size {
   sm = 480,
@@ -27,36 +27,13 @@ export interface ICSSMEDIAProperty<Styled = ICSSProperty> {
 
 export interface IBaseStyled {
   className?: string;
-  pseudos?: CSSObject;
+  sx?: CSSOthersObject;
+  selectors?: CSSObject;
   children?: React.ReactNode | JSX.Element | JSX.Element[];
 }
 export interface IStyledNative
   extends Omit<CSSProperties, "translate">,
     ICSSMEDIAProperty,
-    Omit<
-      SpaceProps,
-      | "margin"
-      | "marginTop"
-      | "marginLeft"
-      | "marginRight"
-      | "marginBottom"
-      | "padding"
-      | "paddingTop"
-      | "paddingLeft"
-      | "paddingRight"
-      | "paddingBottom"
-    >,
-    Omit<
-      ColorProps,
-      | "color"
-      | "opacity"
-      | "background"
-      | "backgroundSize"
-      | "backgroundImage"
-      | "backgroundColor"
-      | "backgroundRepeat"
-      | "backgroundPosition"
-    >,
     IBaseStyled {}
 
 export interface ICSSProperty extends IStyledNative {}
