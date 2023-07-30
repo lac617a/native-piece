@@ -129,8 +129,12 @@ export const ALLPROPERTY = [
   // **L-EL** //
   "left",
   "letter-spacing",
+  "list-style",
   "line-break",
   "line-height",
+  "list-style-image",
+  "list-style-type",
+  "list-style-position",
   // **M-EM** //
   "margin-bottom",
   "margin-left",
