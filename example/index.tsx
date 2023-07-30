@@ -50,7 +50,10 @@ const App = () => {
         padding={30}
         transition="300ms"
         onClick={() => setShow(prev => !prev)}
-        pseudos={{
+        sx={{
+          "@media only screen and (max-width: 1000px)": { color: "blue" },
+        }}
+        selectors={{
           ":hover": {
             backgroundColor: "#1d3557",
             transform: "scale(1.02)"
@@ -67,7 +70,7 @@ const App = () => {
           transition="1000ms"
           fontFamily="fantasy"
           mediaMd={{ color: 'yellow' }}
-          pseudos={{ ":hover": { color: 'blue' } }}>
+          selectors={{ ":hover": { color: 'blue' } }}>
           Typography-test
         </Typography>
       </Collapse>
@@ -120,10 +123,11 @@ const App = () => {
         Hola
       </Typography>
       <Box>
+        STACK
         <Stack
           gap="1rem"
           maxWidth="10%"
-          marginX={30}
+          marginInline={30}
           padding={20}
           fontSize={20}
           transition="300ms"
@@ -136,7 +140,7 @@ const App = () => {
             margin: "20px",
             maxWidth: "max-content"
           }}
-          pseudos={{
+          selectors={{
             ":hover": {
               color: "red"
             }
