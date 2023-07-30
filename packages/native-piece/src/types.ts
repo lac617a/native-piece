@@ -1,6 +1,4 @@
 import { CSSProperties } from "react";
-import * as CSS from "csstype";
-import { CSSObject } from "@emotion/styled";
 import { IBaseStyled, ICSSMEDIAProperty, ICSSProperty } from "./interfaces";
 
 export type KeyofJSXType = keyof Pick<
@@ -33,7 +31,6 @@ export type DOMProps = React.DOMAttributes<HTMLElement>;
 export type Merge<M, N> = Omit<M, Extract<keyof M, keyof N>> & N;
 
 export type OnlyKey<S> = { [E in keyof S]: E };
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
 export type KeyofJSXTypography = keyof Pick<
   JSX.IntrinsicElements,
